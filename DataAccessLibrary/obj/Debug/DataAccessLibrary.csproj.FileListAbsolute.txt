@@ -1,0 +1,7 @@
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\DataAccessLibrary.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\DataAccessLibrary.pdb
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\SharedResourcesLibrary.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\SharedResourcesLibrary.pdb
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.csprojResolveAssemblyReference.cache
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.pdb
