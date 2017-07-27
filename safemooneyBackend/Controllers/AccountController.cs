@@ -19,7 +19,7 @@ namespace safemooneyBackend.Controllers
         private DataStorageEmulator db = new DataStorageEmulator();
 
         /*
-          Example of input:
+          Example of input: (data must be send in the context)
           {
             "username": "value",
             "password": "value"
