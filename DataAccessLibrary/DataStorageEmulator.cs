@@ -9,13 +9,13 @@ namespace DataAccessLibrary
 {
     public class DataStorageEmulator
     {
-        private List<User> usersTable;
+        private static List<User> usersTable;
 
-        public DataStorageEmulator()
+        static DataStorageEmulator()
         {
             usersTable = new List<User>()
             {
-                new User() { Id = 0, Login = "sergey", Password = "pas", TokenKey = "QWxhZGRppvcGVuIHNlc2FtZQ==" },
+                new User() { Id = 0, Login = "sergey", Password = "123123123123123123123", TokenKey = "QWxhZGRppvcGVuIHNlc2FtZQ==" },
                 new User() { Id = 1, Login = "log", Password = "pas" },
                 new User() { Id = 2, Login = "log", Password = "pas" },
                 new User() { Id = 3, Login = "log", Password = "pas" },

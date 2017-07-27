@@ -11,14 +11,14 @@ using System.Security.Principal;
 using DataAccessLibrary;
 using SharedResourcesLibrary.AccountResources;
 
-namespace safemooneyBackend.Filters
+namespace safemooneyBackend.Security.Filters
 {
-    public class AuthFilter : Attribute, IAuthenticationFilter
+    public class AuthFilterAttribute : Attribute, IAuthenticationFilter
     {
         private DataStorageEmulator db = new DataStorageEmulator();
 
         //Position of username in http request string
-        private int positionOfun = 2;
+        private int positionOfun = 1;
 
         public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
@@ -28,8 +28,10 @@ namespace safemooneyBackend.Filters
             if (authentication != null && authentication.Scheme == "Basic")
             {
                 string username = context.Request.RequestUri.Segments[positionOfun].TrimEnd('/');
+                var d = context.Request.Content;
+
                 string token = authentication.Parameter;
-                //check data base for this user
+                //check database for this user
                 User user = db.FindUserByLogin(username);
 
                 if(user != null && user.TokenKey != null && user.TokenKey.Equals(token))
