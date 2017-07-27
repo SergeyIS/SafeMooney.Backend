@@ -45,11 +45,26 @@ namespace safemooneyBackend.Controllers
             //save changes to db
             localUser.TokenKey = token;
                         
-            TokenResponse response = new TokenResponse();
+            TokenResponseModel response = new TokenResponseModel();
             response.Username = user.Username;
             response.Access_Token = token;
 
-            return Request.CreateResponse<TokenResponse>(HttpStatusCode.OK, response);
+            return Request.CreateResponse<TokenResponseModel>(HttpStatusCode.OK, response);
+        }
+
+        [HttpPost]
+        [Route("api/account/signup/")]
+        public HttpResponseMessage SignUp(UserModel user)
+        {
+            if (user == null || user.Username == null || user.Password == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            if (db.CheckForUser(user.Username))
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+
+            db.AddUser(user.Username, user.Password, user.FirstName, user.LastName);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

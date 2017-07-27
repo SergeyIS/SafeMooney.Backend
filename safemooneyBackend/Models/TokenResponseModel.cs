@@ -5,7 +5,7 @@ using System.Web;
 
 namespace safemooneyBackend.Models
 {
-    public class TokenResponse
+    public class TokenResponseModel
     {
         public String Username { get; set; }
 

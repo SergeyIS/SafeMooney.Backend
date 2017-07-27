@@ -58,5 +58,32 @@ namespace DataAccessLibrary
         {
             throw new NotImplementedException();
         }
+        public bool CheckForUser(String username)
+        {
+            if (username == null)
+                throw new ArgumentException();
+
+            return usersTable.Contains(new User() { Login = username });
+        }
+        public void AddUser(String username, String password, String firstName, String lastName)
+        {
+            int id = usersTable.Count;
+            User user = new User() {
+                Id = id,
+                FirstName = firstName,
+                LastName = lastName,
+                Login = username,
+                Password = password 
+            };
+
+            usersTable.Add(user);
+        }
+        public void AddUser(User user)
+        {
+            if (user == null)
+                throw new ArgumentNullException();
+
+            AddUser(user.Login, user.Password, user.FirstName, user.LastName);
+        }
     }
 }

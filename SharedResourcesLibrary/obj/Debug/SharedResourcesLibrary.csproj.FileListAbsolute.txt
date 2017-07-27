@@ -2,3 +2,4 @@ D:\MyProjects\safemooneyBackend\SharedResourcesLibrary\bin\Debug\SharedResources
 D:\MyProjects\safemooneyBackend\SharedResourcesLibrary\bin\Debug\SharedResourcesLibrary.pdb
 D:\MyProjects\safemooneyBackend\SharedResourcesLibrary\obj\Debug\SharedResourcesLibrary.dll
 D:\MyProjects\safemooneyBackend\SharedResourcesLibrary\obj\Debug\SharedResourcesLibrary.pdb
+D:\MyProjects\safemooneyBackend\SharedResourcesLibrary\obj\Debug\SharedResourcesLibrary.csprojResolveAssemblyReference.cache
