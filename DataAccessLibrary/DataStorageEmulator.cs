@@ -15,7 +15,7 @@ namespace DataAccessLibrary
         {
             usersTable = new List<User>()
             {
-                new User() { Id = 0, Login = "sergey", Password = "123123123123123123123", TokenKey = "QWxhZGRppvcGVuIHNlc2FtZQ==" },
+                new User() { Id = 0, Login = "sergey", Password = "123"},
                 new User() { Id = 1, Login = "log", Password = "pas" },
                 new User() { Id = 2, Login = "log", Password = "pas" },
                 new User() { Id = 3, Login = "log", Password = "pas" },

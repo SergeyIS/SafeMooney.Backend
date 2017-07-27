@@ -13,12 +13,19 @@ namespace safemooneyBackend.Security.Util
         private const String secretKey = "secret@key";
         private String username;
         private String password;
+        private String outstr;
 
-        public void SetUserData(String username, String password)
+        public TokenGenerator(String username, String password)
         {
             this.username = username;
             this.password = password;
+
+            outstr = $"{username}@{password}";
+            Random rnd = new Random();
+            for (int i = 0; i <= 5; i++)
+                outstr += rnd.Next(0, 256);
         }
+
         public String GenerateKey()
         {
             if (username == null || password == null)
@@ -40,7 +47,7 @@ namespace safemooneyBackend.Security.Util
        
         public override string ToString()
         {
-            return $"{username}@{password}";
+            return outstr;
         }
     }
 }

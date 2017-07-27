@@ -29,7 +29,7 @@ namespace safemooneyBackend.Controllers
         [Route("api/account/login/")]
         public HttpResponseMessage LogIn(UserModel user)
         {
-            if (user == null)
+            if (user == null || user.Username == null || user.Password == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             User localUser = db.FindUserByLogin(user.Username);
@@ -38,14 +38,18 @@ namespace safemooneyBackend.Controllers
             if (localUser == null || !localUser.Password.Equals(user.Password))
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
 
-            //todo: generate tokent and set it to database
+            
+            TokenGenerator tgen = new TokenGenerator(user.Username, user.Password);
+            string token = tgen.GenerateKey();
 
-            TokenGenerator tgen = new TokenGenerator();
-            tgen.SetUserData(user.Username, user.Password);
-            tgen.GenerateKey();
+            //save changes to db
+            localUser.TokenKey = token;
+                        
+            TokenResponse response = new TokenResponse();
+            response.Username = user.Username;
+            response.Access_Token = token;
 
-            var response = Request.CreateResponse<String>(HttpStatusCode.OK, "It's OK");
-            return response;
+            return Request.CreateResponse<TokenResponse>(HttpStatusCode.OK, response);
         }
     }
 }

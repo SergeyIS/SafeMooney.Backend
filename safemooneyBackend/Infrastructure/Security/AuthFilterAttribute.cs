@@ -18,7 +18,7 @@ namespace safemooneyBackend.Security.Filters
         private DataStorageEmulator db = new DataStorageEmulator();
 
         //Position of username in http request string
-        private int positionOfun = 1;
+        private int positionOfun = 2;
 
         public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
