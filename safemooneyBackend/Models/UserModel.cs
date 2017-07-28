@@ -7,6 +7,7 @@ namespace safemooneyBackend.Models
 {
     public class UserModel
     {
+        public int UserId { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
         public String FirstName { get; set; }

@@ -18,13 +18,16 @@ namespace safemooneyBackend.Controllers
     {
         private DataStorageEmulator db = new DataStorageEmulator();
 
-        /*
-          Example of input: (data must be send in the context)
-          {
-            "username": "value",
-            "password": "value"
-          }
-         */
+        /// <summary>
+         /// This method provide access to resources  for user
+         /// </summary>
+         /// <param name="user">
+         /// {
+         ///  "username": "value",
+         ///  "password": "value"
+         /// }
+         /// </param>
+         /// <returns></returns>
         [HttpPost]
         [Route("api/account/login/")]
         public HttpResponseMessage LogIn(UserModel user)
@@ -46,12 +49,17 @@ namespace safemooneyBackend.Controllers
             localUser.TokenKey = token;
                         
             TokenResponseModel response = new TokenResponseModel();
-            response.Username = user.Username;
+            response.UserId = localUser.Id;
             response.Access_Token = token;
 
             return Request.CreateResponse<TokenResponseModel>(HttpStatusCode.OK, response);
         }
 
+        /// <summary>
+        /// This method register user in the system
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/account/signup/")]
         public HttpResponseMessage SignUp(UserModel user)

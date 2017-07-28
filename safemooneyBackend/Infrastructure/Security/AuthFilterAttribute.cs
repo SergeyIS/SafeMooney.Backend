@@ -27,16 +27,29 @@ namespace safemooneyBackend.Security.Filters
             
             if (authentication != null && authentication.Scheme == "Basic")
             {
-                string username = context.Request.RequestUri.Segments[positionOfun].TrimEnd('/');
+
+                int userId = 0;
+                try
+                {
+                    userId = Convert.ToInt32(context.Request.RequestUri.Segments[positionOfun].TrimEnd('/'));
+                }
+                catch
+                {
+                    context.ErrorResult = new UnauthorizedResult(new AuthenticationHeaderValue[] {
+                    new AuthenticationHeaderValue("Basic") }, context.Request);
+
+                    return Task.FromResult<object>(null);
+                }
+
                 var d = context.Request.Content;
 
                 string token = authentication.Parameter;
                 //check database for this user
-                User user = db.FindUserByLogin(username);
+                User user = db.FindUserById(userId);
 
                 if(user != null && user.TokenKey != null && user.TokenKey.Equals(token))
                 {
-                    context.Principal = new GenericPrincipal(new GenericIdentity(username), null);
+                    context.Principal = new GenericPrincipal(new GenericIdentity(user.Login), null);
 
                     return Task.FromResult<object>(null);
                 }

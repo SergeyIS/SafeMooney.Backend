@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,6 +167,8 @@
     <Compile Include="Infrastructure\Security\TokenGenerator.cs" />
     <Compile Include="Infrastructure\Security\CryptoService.cs" />
     <Compile Include="Models\TokenResponseModel.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
+    <Compile Include="Models\ShortUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
