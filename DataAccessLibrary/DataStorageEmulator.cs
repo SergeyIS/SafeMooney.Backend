@@ -123,7 +123,7 @@ namespace DataAccessLibrary
             /*
              Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
              */
-            return transactionsTable.Where(t => t.isPermited == false && t.user1Id == userID).ToList();
+            return transactionsTable.Where(t => t.isPermited == false && t.user2Id == userID).ToList();
         }
         public bool ConfirmTransaction(Transaction trans)
         {
@@ -132,12 +132,14 @@ namespace DataAccessLibrary
 
 
             //transaction that belongs to user
-            Transaction localTrans = transactionsTable.Where(t => t.transactionId == trans.transactionId && 
-            t.user1Id == trans.user1Id && t.user2Id == trans.user2Id).First();
+            var query = transactionsTable.Where(t => t.transactionId == trans.transactionId && 
+            t.user1Id == trans.user1Id && t.user2Id == trans.user2Id);
 
-            if (localTrans == null)
+            if (query.Count() == 0)
                 return false;
 
+            Transaction localTrans = query.First();
+            
             localTrans.isPermited = true;
 
             return true;

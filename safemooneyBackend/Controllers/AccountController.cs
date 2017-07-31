@@ -35,7 +35,15 @@ namespace safemooneyBackend.Controllers
             if (user == null || user.Username == null || user.Password == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            User localUser = db.FindUserByLogin(user.Username);
+            User localUser;
+            try
+            {
+                localUser = db.FindUserByLogin(user.Username);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
             //todo: password decryption
 
             if (localUser == null || !localUser.Password.Equals(user.Password))
@@ -78,8 +86,12 @@ namespace safemooneyBackend.Controllers
         [Route("api/account/signup/")]
         public HttpResponseMessage SignUp(UserModel user)
         {
-            if (user == null || user.Username == null || user.Password == null)
+            if (user == null || user.Username == null || user.Password == null || 
+                user.Username == "" || user.Password == "")
+            {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
 
             if (db.CheckForUser(user.Username))
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
