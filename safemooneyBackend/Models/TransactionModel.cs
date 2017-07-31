@@ -7,6 +7,7 @@ namespace safemooneyBackend.Models
 {
     public class TransactionModel
     {
+        public int transactionId { get; set; }
         public int userId { get; set; }
         public string count { get; set; }
         public DateTime date { get; set; }

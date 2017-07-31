@@ -1,11 +1,11 @@
-﻿using safemooneyBackend.Security.Filters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using safemooneyBackend.Models;
+using safemooneyBackend.Security.Filters;
 using SharedResourcesLibrary.TransactionResources;
 using DataAccessLibrary;
 
@@ -90,6 +90,34 @@ namespace safemooneyBackend.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, transactions);
         }
 
+        /// <summary>
+        /// Allows to confirm transaction
+        /// </summary>
+        /// <param name="trans"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/{userId}/transactions/confirm")]
+        public HttpResponseMessage Confirm([FromBody]TransactionModel trans, int userId = -1)
+        {
+            if (userId < 0 || trans == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            Transaction localTrans = new Transaction()
+            {
+                transactionId = trans.transactionId,
+                user1Id = trans.userId,
+                user2Id = userId
+            };
+
+            bool resultOfOperation = db.ConfirmTransaction(localTrans);
+
+            if (!resultOfOperation)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+
+        }
 
     }
 }

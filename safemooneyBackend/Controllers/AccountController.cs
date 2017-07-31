@@ -55,6 +55,20 @@ namespace safemooneyBackend.Controllers
             return Request.CreateResponse<TokenResponseModel>(HttpStatusCode.OK, response);
         }
 
+        [AuthFilter]
+        [HttpGet]
+        [Route("api/{userId}/account/logout")]
+        public HttpResponseMessage LogOut(int userId = -1)
+        {
+            bool resultOfOperation = db.ResetTokenForUser(userId);
+
+            if (!resultOfOperation)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+
+        }
+
         /// <summary>
         /// This method register user in the system
         /// </summary>

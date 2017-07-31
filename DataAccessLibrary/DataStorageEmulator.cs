@@ -128,5 +128,33 @@ namespace DataAccessLibrary
              */
             return transactionsTable.Where(t => t.isPermited == false && t.user1Id == userID).ToList();
         }
+
+        public bool ConfirmTransaction(Transaction trans)
+        {
+            if (trans == null)
+                throw new ArgumentNullException();
+
+
+            //transaction that belongs to user
+            Transaction localTrans = transactionsTable.Where(t => t.transactionId == trans.transactionId && 
+            t.user1Id == trans.user1Id && t.user2Id == trans.user2Id).First();
+
+            if (localTrans == null)
+                return false;
+
+            localTrans.isPermited = true;
+
+            return true;
+        }
+
+        public bool ResetTokenForUser(int userId)
+        {
+            if (userId < 0 || userId > usersTable.Count)
+                return false;
+
+            usersTable[userId].TokenKey = null;
+
+            return true;
+        }
     }
 }
