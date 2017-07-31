@@ -53,13 +53,15 @@ namespace DataAccessLibrary
         }
         public User FindUserById(int id)
         {
-            if (id < 0)
-                throw new ArgumentException();
+            var query = usersTable.Where(u => u.Id == id);
 
-            if (id >= usersTable.Count)
+            if (query.Count() == 0)
                 return null;
 
-            return usersTable[id];
+            if (query.Count() > 1)
+                throw new Exception("There's more than one user in the database with such parameters");
+
+            return query.First();
         }
         public User FindUserByLogin(String login)
         {
@@ -87,7 +89,7 @@ namespace DataAccessLibrary
 
             return usersTable.Contains(new User() { Login = username });
         }
-        public void AddUser(String username, String password, String firstName, String lastName)
+        public void AddUserSafely(String username, String password, String firstName, String lastName)
         {
             int id = usersTable.Count;
             User user = new User() {
@@ -100,12 +102,34 @@ namespace DataAccessLibrary
 
             usersTable.Add(user);
         }
-        public void AddUser(User user)
+        public void AddUserSafely(User user)
         {
             if (user == null)
                 throw new ArgumentNullException();
 
-            AddUser(user.Login, user.Password, user.FirstName, user.LastName);
+            AddUserSafely(user.Login, user.Password, user.FirstName, user.LastName);
+        }
+        public bool AddUser(User user)
+        {
+            var r = FindUserById(user.Id);
+            if (FindUserById(user.Id) != null)
+                return false;
+
+            usersTable.Add(user);
+
+            return true;
+        }
+        public bool RemoveUser(int userId, ref String token)
+        {
+            User user =  this.FindUserById(userId);
+
+            if (user == null)
+                return false;
+
+            token = user.TokenKey;
+            usersTable.Remove(user);
+
+            return true;
         }
         public List<User> GetAllUsers()
         {

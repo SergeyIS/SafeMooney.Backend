@@ -29,7 +29,7 @@ namespace safemooneyBackend.Controllers
          /// </param>
          /// <returns></returns>
         [HttpPost]
-        [Route("api/account/login/")]
+        [Route("api/account/login")]
         public HttpResponseMessage LogIn(UserModel user)
         {
             if (user == null || user.Username == null || user.Password == null)
@@ -83,7 +83,7 @@ namespace safemooneyBackend.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("api/account/signup/")]
+        [Route("api/account/signup")]
         public HttpResponseMessage SignUp(UserModel user)
         {
             if (user == null || user.Username == null || user.Password == null || 
@@ -96,7 +96,41 @@ namespace safemooneyBackend.Controllers
             if (db.CheckForUser(user.Username))
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
 
-            db.AddUser(user.Username, user.Password, user.FirstName, user.LastName);
+            db.AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [AuthFilter]
+        [HttpPost]
+        [Route("api/{userId}/account/change")]
+        public HttpResponseMessage Change([FromBody]UserModel user, int userId)
+        {
+            if(user == null || user.FirstName == null || user.LastName == null ||
+                user.Username == null || user.Password == null || user.UserId != userId)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            if (db.CheckForUser(user.Username))
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+
+            String token = String.Empty;
+            bool resultOfOperation = db.RemoveUser(userId, ref token);
+
+            if (!resultOfOperation)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            db.AddUser(new User()
+            {
+                Id = userId,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Login = user.Username,
+                Password = user.Password,
+                TokenKey = token
+            });
+
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
