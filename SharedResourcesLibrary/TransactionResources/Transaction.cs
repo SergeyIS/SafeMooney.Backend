@@ -14,6 +14,6 @@ namespace SharedResourcesLibrary.TransactionResources
         public DateTime date { get; set; }
         public int period { get; set; }
         public bool isPermited { get; set; }
-
+        public bool isClosed { get; set; }
     }
 }

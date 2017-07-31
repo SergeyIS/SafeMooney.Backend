@@ -12,6 +12,7 @@ namespace DataAccessLibrary
     {
         private static List<User> usersTable;
         private static List<Transaction> transactionsTable;
+        private static List<Transaction> transactionsArchive;
 
         static DataStorageEmulator()
         {
@@ -29,6 +30,8 @@ namespace DataAccessLibrary
                 new Transaction {transactionId = 0, user1Id = 0, user2Id = 1, count = "124.4$",
                     date = DateTime.Now, period = 30, isPermited = false }
             };
+
+            transactionsArchive = new List<Transaction>();
 
         }
 
@@ -142,6 +145,20 @@ namespace DataAccessLibrary
             
             localTrans.isPermited = true;
 
+            return true;
+        }
+        public bool CloseTransactionForUser(int transId, int userId)
+        {
+            //todo: implement IEquatable<Transaction> for more flexibility
+            var query = transactionsTable.Where(t => t.transactionId == transId && t.user1Id == userId);
+
+            int count = query.Count();
+            if (count == 0 || count > 1)
+                return false;
+
+            Transaction localTrans = query.First();
+            localTrans.isClosed = true;
+            
             return true;
         }
         public bool ResetTokenForUser(int userId)

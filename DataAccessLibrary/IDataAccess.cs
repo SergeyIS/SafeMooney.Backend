@@ -22,5 +22,6 @@ namespace DataAccessLibrary
         List<Transaction> GetTransactionsForUser(int userID);
         bool ConfirmTransaction(Transaction trans);
         bool ResetTokenForUser(int userId);
+        bool CloseTransactionForUser(int transId, int userId);
     }
 }

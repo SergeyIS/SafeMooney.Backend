@@ -62,7 +62,8 @@ namespace safemooneyBackend.Controllers
                 count = trans.count,
                 date = trans.date,
                 period = trans.period,
-                isPermited = false
+                isPermited = false,
+                isClosed = false
             };
 
             db.AddTransaction(transactionObj);
@@ -119,5 +120,17 @@ namespace safemooneyBackend.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("api/{userId}/transactions/close/{transId}")]
+        public HttpResponseMessage Close(int transId = -1, int userId = -1)
+        {
+            bool resultOfOperation = db.CloseTransactionForUser(transId, userId);
+
+            if (!resultOfOperation)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }
