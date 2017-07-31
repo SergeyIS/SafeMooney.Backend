@@ -8,7 +8,7 @@ using SharedResourcesLibrary.TransactionResources;
 
 namespace DataAccessLibrary
 {
-    public class DataStorageEmulator
+    public class DataStorageEmulator : IDataAccess
     {
         private static List<User> usersTable;
         private static List<Transaction> transactionsTable;
@@ -104,14 +104,12 @@ namespace DataAccessLibrary
 
             AddUser(user.Login, user.Password, user.FirstName, user.LastName);
         }
-
         public List<User> GetAllUsers()
         {
             User[] userArray = new User[usersTable.Count];
             usersTable.CopyTo(userArray);
             return new List<User>(userArray);
         }
-
         public void AddTransaction(Transaction trans)
         {
             if (trans == null)
@@ -120,7 +118,6 @@ namespace DataAccessLibrary
             trans.isPermited = false;
             transactionsTable.Add(trans);
         }
-
         public List<Transaction> GetTransactionsForUser(int userID)
         {
             /*
@@ -128,7 +125,6 @@ namespace DataAccessLibrary
              */
             return transactionsTable.Where(t => t.isPermited == false && t.user1Id == userID).ToList();
         }
-
         public bool ConfirmTransaction(Transaction trans)
         {
             if (trans == null)
@@ -146,7 +142,6 @@ namespace DataAccessLibrary
 
             return true;
         }
-
         public bool ResetTokenForUser(int userId)
         {
             if (userId < 0 || userId > usersTable.Count)

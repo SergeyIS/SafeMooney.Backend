@@ -16,7 +16,7 @@ namespace safemooneyBackend.Controllers
 {
     public class AccountController : ApiController
     {
-        private DataStorageEmulator db = new DataStorageEmulator();
+        private IDataAccess db = new DataStorageEmulator();
 
         /// <summary>
          /// This method provide access to resources  for user

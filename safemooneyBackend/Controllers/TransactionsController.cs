@@ -14,7 +14,7 @@ namespace safemooneyBackend.Controllers
     [AuthFilter]
     public class TransactionsController : ApiController
     {
-        DataStorageEmulator db = new DataStorageEmulator();
+        IDataAccess db = new DataStorageEmulator();
 
         /// <summary>
         /// This method reterns users who are friends of user with userId
