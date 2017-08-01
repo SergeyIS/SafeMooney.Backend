@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using safemooneyBackend.Models;
 using safemooneyBackend.Security.Filters;
-using SharedResourcesLibrary.TransactionResources;
+using SharedResourcesLibrary;
 using DataAccessLibrary;
 
 namespace safemooneyBackend.Controllers

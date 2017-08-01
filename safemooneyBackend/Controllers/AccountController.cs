@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Http;
 using safemooneyBackend.Security.Filters;
 using DataAccessLibrary;
-using SharedResourcesLibrary.AccountResources;
+using SharedResourcesLibrary;
 using System.Web.Http.Results;
 using System.Net;
 using System.Net.Http;
