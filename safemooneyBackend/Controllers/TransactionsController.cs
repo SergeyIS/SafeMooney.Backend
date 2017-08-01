@@ -120,7 +120,12 @@ namespace safemooneyBackend.Controllers
 
         }
 
-
+        /// <summary>
+        /// This method close transaction
+        /// </summary>
+        /// <param name="transId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/{userId}/transactions/close/{transId}")]
         public HttpResponseMessage Close(int transId = -1, int userId = -1)
@@ -131,6 +136,21 @@ namespace safemooneyBackend.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// This method retern all contains transactions for user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/{userId}/transactions/fetch")]
+        public HttpResponseMessage Fetch(int userId = -1)
+        {
+            if (userId < 0)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            return Request.CreateResponse(HttpStatusCode.OK, db.FetchTransactions(userId));
         }
     }
 }

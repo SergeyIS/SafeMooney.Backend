@@ -12,7 +12,6 @@ namespace DataAccessLibrary
     {
         private static List<User> usersTable;
         private static List<Transaction> transactionsTable;
-        private static List<Transaction> transactionsArchive;
 
         static DataStorageEmulator()
         {
@@ -145,12 +144,16 @@ namespace DataAccessLibrary
             trans.isPermited = false;
             transactionsTable.Add(trans);
         }
-        public List<Transaction> GetTransactionsForUser(int userID)
+        public List<Transaction> GetTransactionsForUser(int userId)
         {
             /*
              Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
              */
-            return transactionsTable.Where(t => t.isPermited == false && t.user2Id == userID).ToList();
+            var query = transactionsTable.Where(t => t.isPermited == false && t.user2Id == userId);
+            if (query.Count() == 0)
+                return null;
+
+            return query.ToList();
         }
         public bool ConfirmTransaction(Transaction trans)
         {
@@ -193,6 +196,17 @@ namespace DataAccessLibrary
             usersTable[userId].TokenKey = null;
 
             return true;
+        }
+        public List<Transaction> FetchTransactions(int userId)
+        {
+            /*
+             Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
+             */
+            var query = transactionsTable.Where(t => t.isPermited == false && t.user1Id == userId);
+            if (query.Count() == 0)
+                return null;
+
+            return query.ToList();
         }
     }
 }
