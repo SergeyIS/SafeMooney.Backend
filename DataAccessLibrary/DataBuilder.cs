@@ -289,77 +289,222 @@ namespace DataAccessLibrary
             }
         }
 
-        //public void AddTransaction(Transaction trans)
-        //{
-        //    if (trans == null)
-        //        throw new ArgumentNullException();
+        public void AddTransaction(Transaction trans)
+        {
+            if (trans == null)
+                throw new ArgumentNullException();
 
-        //    trans.isPermited = false;
-        //    transactionsTable.Add(trans);
-        //}
-        //public List<Transaction> GetTransactionsForUser(int userId)
-        //{
-        //    /*
-        //     Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
-        //     */
-        //    var query = transactionsTable.Where(t => t.isPermited == false && t.user2Id == userId);
-        //    if (query.Count() == 0)
-        //        return null;
+            DataStorageContext db = null;
+            try
+            {
+                using(db = new DataStorageContext())
+                {
+                    int index = db.Users.Count();
+                    trans.transactionId = index;
+                    trans.isPermited = false;
+                    db.Entry<Transaction>(trans).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChangesAsync();
+                }
+            }
+            catch(Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch(Exception ine)
+                {
+                    //todo: write log
+                }
+            }
+        }
 
-        //    return query.ToList();
-        //}
-        //public bool ConfirmTransaction(Transaction trans)
-        //{
-        //    if (trans == null)
-        //        throw new ArgumentNullException();
+        public List<Transaction> GetTransactionsForUser(int userId)
+        {
+            //Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
 
+            DataStorageContext db = null;
+            try
+            {
+                using(db = new DataStorageContext())
+                {
+                    var query = db.Transactions.Where(t => t.isPermited == false && t.user2Id == userId);
+                    if (query.Count() == 0)
+                        return null;
 
-        //    //transaction that belongs to user
-        //    var query = transactionsTable.Where(t => t.transactionId == trans.transactionId &&
-        //    t.user1Id == trans.user1Id && t.user2Id == trans.user2Id);
+                    return query.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
 
-        //    if (query.Count() == 0)
-        //        return false;
+                return null;
+            }           
+        }
 
-        //    Transaction localTrans = query.First();
+        public bool ConfirmTransaction(Transaction trans)
+        {
+            if (trans == null)
+                throw new ArgumentNullException();
 
-        //    localTrans.isPermited = true;
+            DataStorageContext db = null;
+            try
+            {
+                using(db = new DataStorageContext())
+                {
+                    var query = db.Transactions.Where(t => t.transactionId == trans.transactionId &&
+                        t.user1Id == trans.user1Id && t.user2Id == trans.user2Id);
 
-        //    return true;
-        //}
-        //public bool CloseTransactionForUser(int transId, int userId)
-        //{
-        //    //todo: implement IEquatable<Transaction> for more flexibility
-        //    var query = transactionsTable.Where(t => t.transactionId == transId && t.user1Id == userId);
+                    if (query.Count() == 0)
+                        return false;
 
-        //    int count = query.Count();
-        //    if (count == 0 || count > 1)
-        //        return false;
+                    Transaction localtrans = query.First();
+                    localtrans.isPermited = true;
+                    db.Entry<Transaction>(localtrans).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChangesAsync();
 
-        //    Transaction localTrans = query.First();
-        //    localTrans.isClosed = true;
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
 
-        //    return true;
-        //}
-        //public bool ResetTokenForUser(int userId)
-        //{
-        //    if (userId < 0 || userId > usersTable.Count)
-        //        return false;
+                return false;
+            }
+        }
 
-        //    usersTable[userId].TokenKey = null;
+        public bool CloseTransactionForUser(int transId, int userId)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using(db = new DataStorageContext())
+                {
+                    var query = db.Transactions.Where(t => t.transactionId == transId && t.user1Id == userId);
 
-        //    return true;
-        //}
-        //public List<Transaction> FetchTransactions(int userId)
-        //{
-        //    /*
-        //     Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
-        //     */
-        //    var query = transactionsTable.Where(t => t.isPermited == false && t.user1Id == userId);
-        //    if (query.Count() == 0)
-        //        return null;
+                    int count = query.Count();
+                    if (count == 0 || count > 1)
+                        return false;
 
-        //    return query.ToList();
-        //}
+                    Transaction localTrans = query.First();
+                    localTrans.isClosed = true;
+                    db.Entry<Transaction>(localTrans).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+        }
+
+        public bool ResetTokenForUser(int userId)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.Users.Where(u => u.Id == userId);
+                    if (query.Count() == 0)
+                        return false;
+
+                    if (query.Count() > 1)
+                        throw new Exception("More than one user was found");
+
+                    User localUser = query.First();
+                    localUser.TokenKey = null;
+
+                    db.Entry<User>(localUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+
+        }
+
+        public List<Transaction> FetchTransactions(int userId)
+        {
+            //Предполагается, что user1Id инициатор, а user2Id тот, на кого заводят транзакцию
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.Transactions.Where(t => t.isPermited == false && t.user1Id == userId);
+                    if (query.Count() == 0)
+                        return null;
+
+                    return query.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return null;
+            }
+            
+        }
     }
 }
