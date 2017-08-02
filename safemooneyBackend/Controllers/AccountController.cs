@@ -16,7 +16,7 @@ namespace safemooneyBackend.Controllers
 {
     public class AccountController : ApiController
     {
-        private IDataAccess db = new DataStorageEmulator();
+        private IDataAccess db = new DataBuilder();
 
         /// <summary>
          /// This method provide access to resources  for user
@@ -35,15 +35,7 @@ namespace safemooneyBackend.Controllers
             if (user == null || user.Username == null || user.Password == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            User localUser;
-            try
-            {
-                localUser = db.FindUserByLogin(user.Username);
-            }
-            catch(Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message);
-            }
+            var localUser = db.FindUserByLogin(user.Username);
             //todo: password decryption
 
             if (localUser == null || !localUser.Password.Equals(user.Password))
@@ -54,13 +46,16 @@ namespace safemooneyBackend.Controllers
             string token = tgen.GenerateKey();
 
             //save changes to db
-            localUser.TokenKey = token;
-                        
+            bool resultOfOperation = db.SetTokenForUser(localUser.Id, token);
+
+            if (!resultOfOperation)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                     
             TokenResponseModel response = new TokenResponseModel();
             response.UserId = localUser.Id;
             response.Access_Token = token;
 
-            return Request.CreateResponse<TokenResponseModel>(HttpStatusCode.OK, response);
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         [AuthFilter]
@@ -92,11 +87,17 @@ namespace safemooneyBackend.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
+            try
+            {
+                if (db.CheckForUser(user.Username))
+                    return Request.CreateResponse(HttpStatusCode.Forbidden);
 
-            if (db.CheckForUser(user.Username))
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
-
-            db.AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
+                db.AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            }
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -119,18 +120,20 @@ namespace safemooneyBackend.Controllers
             bool resultOfOperation = db.RemoveUser(userId, ref token);
 
             if (!resultOfOperation)
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
-            db.AddUser(new User()
+            resultOfOperation = db.AddUser(new User()
             {
                 Id = userId,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Login = user.Username,
+                Username = user.Username,
                 Password = user.Password,
                 TokenKey = token
             });
 
+            if(!resultOfOperation)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

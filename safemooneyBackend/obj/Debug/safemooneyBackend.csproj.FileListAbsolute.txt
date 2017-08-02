@@ -71,3 +71,9 @@ D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\DataAccessLibrary.dll
 D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\SharedResourcesLibrary.dll
 D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\DataAccessLibrary.pdb
 D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\SharedResourcesLibrary.pdb
+D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\EntityFramework.dll
+D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\EntityFramework.SqlServer.dll
+D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\EntityFramework.xml
+D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\EntityFramework.SqlServer.xml
+D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\ru\EntityFramework.resources.dll
+D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\ru\EntityFramework.SqlServer.resources.dll

@@ -14,7 +14,7 @@ namespace safemooneyBackend.Controllers
     [AuthFilter]
     public class TransactionsController : ApiController
     {
-        IDataAccess db = new DataStorageEmulator();
+        IDataAccess db = new DataBuilder();
 
         /// <summary>
         /// This method reterns users who are friends of user with userId
@@ -34,7 +34,7 @@ namespace safemooneyBackend.Controllers
                 UserId = u.Id,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
-                Username = u.Login
+                Username = u.Username
             });
             
             return Request.CreateResponse(HttpStatusCode.OK, userList);
@@ -57,13 +57,13 @@ namespace safemooneyBackend.Controllers
 
             Transaction transactionObj = new Transaction()
             {
-                user1Id = userId,
-                user2Id = trans.userId,
-                count = trans.count,
-                date = trans.date,
-                period = trans.period,
-                isPermited = false,
-                isClosed = false
+                User1Id = userId,
+                User2Id = trans.userId,
+                Count = trans.count,
+                Date = trans.date,
+                Period = trans.period,
+                IsPermited = false,
+                IsClosed = false
             };
 
             db.AddTransaction(transactionObj);
@@ -106,9 +106,9 @@ namespace safemooneyBackend.Controllers
 
             Transaction localTrans = new Transaction()
             {
-                transactionId = trans.transactionId,
-                user1Id = trans.userId,
-                user2Id = userId
+                Id = trans.transactionId,
+                User1Id = trans.userId,
+                User2Id = userId
             };
 
             bool resultOfOperation = db.ConfirmTransaction(localTrans);

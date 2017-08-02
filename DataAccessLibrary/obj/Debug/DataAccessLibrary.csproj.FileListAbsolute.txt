@@ -5,3 +5,10 @@ D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\SharedResourcesLibra
 D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.csprojResolveAssemblyReference.cache
 D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.dll
 D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.pdb
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\DataAccessLibrary.dll.config
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.xml
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\ru\EntityFramework.resources.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

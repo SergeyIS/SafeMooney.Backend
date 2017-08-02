@@ -1,26 +1,34 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SharedResourcesLibrary
 {
-    public class User : IEquatable<User>
+    [Table("Users")]
+    public class User
     {
+        [Key]
+        [Column("id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [Required]
+        [Column("firstname")]
         public String FirstName { get; set; }
+
+        [Required]
+        [Column("lastname")]
         public String LastName { get; set; }
-        public String Login { get; set; }
+
+        [Required]
+        [Column("username")]
+        public String Username { get; set; }
+
+        [Required]
+        [Column("password")]
         public String Password { get; set; }
+
+        [Column("tokenkey")]
         public String TokenKey { get; set; }
-
-
-        public bool Equals(User other)
-        {
-            if (other == null)
-                throw new ArgumentNullException("Null argement");
-
-            if (other.Login == null)
-                throw new ArgumentException("Bad argument");
-
-            return other.Login.Equals(this.Login);
-        }
     }
 }

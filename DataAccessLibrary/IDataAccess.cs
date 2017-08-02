@@ -25,6 +25,6 @@ namespace DataAccessLibrary
         bool CloseTransactionForUser(int transId, int userId);
         bool RemoveUser(int userId, ref String token);
         List<Transaction> FetchTransactions(int userId);
-
+        bool SetTokenForUser(int userId, String token);
     }
 }

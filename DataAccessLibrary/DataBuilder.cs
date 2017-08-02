@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace DataAccessLibrary
 {
     public class DataBuilder : IDataAccess
     {
+
         public User FindUser(String login, String password)
         {
             if (login == null || password == null)
@@ -16,7 +18,7 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    var query = db.Users.Where(u => u.Login.Equals(login) && u.Password.Equals(password));
+                    var query = db.Users.Where(u => u.Username.Equals(login) && u.Password.Equals(password));
 
                     if (query.Count() == 0)
                         return null;
@@ -43,6 +45,7 @@ namespace DataAccessLibrary
                 return null;
             }          
         }
+
         public User FindUserById(int id)
         {
             DataStorageContext db = null;
@@ -78,6 +81,7 @@ namespace DataAccessLibrary
             }
             
         }
+
         public User FindUserByLogin(String login)
         {
             if (login == null)
@@ -88,7 +92,7 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    var query = db.Users.Where(u => u.Login.Equals(login));
+                    var query = db.Users.Where(u => u.Username.Equals(login));
 
                     if (query.Count() == 0)
                         return null;
@@ -115,10 +119,12 @@ namespace DataAccessLibrary
                 return null;
             }
         }
+
         public User FindUserByToken(String TokenKey)
         {
             throw new NotImplementedException();
         }
+
         public bool CheckForUser(String username)
         {
             if (username == null)
@@ -129,7 +135,16 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    return db.Users.Contains(new User() { Login = username });
+                    var query = db.Users.Where(u => u.Username == username);
+
+                    int countOfUsers = query.Count();
+                    if (countOfUsers == 0)
+                        return false;
+
+                    if (countOfUsers > 1)
+                        throw new Exception("More than one user was found");
+
+                    return true;
                 }
             }
             catch(Exception e)
@@ -145,9 +160,10 @@ namespace DataAccessLibrary
                     //todo: write log
                 }
 
-                return false;
+                throw e;
             }
         }
+
         public void AddUserSafely(String username, String password, String firstName, String lastName)
         {
             DataStorageContext db = null;
@@ -155,18 +171,17 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    int id = db.Users.Count();
                     User user = new User()
                     {
-                        Id = id,
                         FirstName = firstName,
                         LastName = lastName,
-                        Login = username,
-                        Password = password
+                        Username = username,
+                        Password = password,
+                        TokenKey = null
                     };
 
                     db.Users.Add(user);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
             }
             catch(Exception e)
@@ -181,15 +196,19 @@ namespace DataAccessLibrary
                 {
                     //todo: write log
                 }
+
+                throw e;
             }   
         }
+
         public void AddUserSafely(User user)
         {
             if (user == null)
                 throw new ArgumentNullException();
 
-            AddUserSafely(user.Login, user.Password, user.FirstName, user.LastName);
+            AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
         }
+
         public bool AddUser(User user)
         {
             var r = FindUserById(user.Id);
@@ -222,6 +241,7 @@ namespace DataAccessLibrary
                 return false;
             }
         }
+
         public bool RemoveUser(int userId, ref String token)
         {          
             DataStorageContext db = null;
@@ -262,6 +282,7 @@ namespace DataAccessLibrary
                 return false;
             }
         }
+
         public List<User> GetAllUsers()
         {
             DataStorageContext db = null;
@@ -300,8 +321,8 @@ namespace DataAccessLibrary
                 using(db = new DataStorageContext())
                 {
                     int index = db.Users.Count();
-                    trans.transactionId = index;
-                    trans.isPermited = false;
+                    trans.Id = index;
+                    trans.IsPermited = false;
                     db.Entry<Transaction>(trans).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChangesAsync();
                 }
@@ -318,6 +339,8 @@ namespace DataAccessLibrary
                 {
                     //todo: write log
                 }
+
+                throw e;
             }
         }
 
@@ -330,7 +353,7 @@ namespace DataAccessLibrary
             {
                 using(db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.isPermited == false && t.user2Id == userId);
+                    var query = db.Transactions.Where(t => t.IsPermited == false && t.User2Id == userId);
                     if (query.Count() == 0)
                         return null;
 
@@ -364,14 +387,14 @@ namespace DataAccessLibrary
             {
                 using(db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.transactionId == trans.transactionId &&
-                        t.user1Id == trans.user1Id && t.user2Id == trans.user2Id);
+                    var query = db.Transactions.Where(t => t.Id == trans.Id &&
+                        t.User1Id == trans.User1Id && t.User2Id == trans.User2Id);
 
                     if (query.Count() == 0)
                         return false;
 
                     Transaction localtrans = query.First();
-                    localtrans.isPermited = true;
+                    localtrans.IsPermited = true;
                     db.Entry<Transaction>(localtrans).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChangesAsync();
 
@@ -402,14 +425,14 @@ namespace DataAccessLibrary
             {
                 using(db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.transactionId == transId && t.user1Id == userId);
+                    var query = db.Transactions.Where(t => t.Id == transId && t.User1Id == userId);
 
                     int count = query.Count();
                     if (count == 0 || count > 1)
                         return false;
 
                     Transaction localTrans = query.First();
-                    localTrans.isClosed = true;
+                    localTrans.IsClosed = true;
                     db.Entry<Transaction>(localTrans).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChangesAsync();
 
@@ -441,17 +464,18 @@ namespace DataAccessLibrary
                 using (db = new DataStorageContext())
                 {
                     var query = db.Users.Where(u => u.Id == userId);
-                    if (query.Count() == 0)
+                    int countOfUsers = query.Count();
+                    if (countOfUsers == 0)
                         return false;
 
-                    if (query.Count() > 1)
+                    if (countOfUsers > 1)
                         throw new Exception("More than one user was found");
 
                     User localUser = query.First();
                     localUser.TokenKey = null;
 
                     db.Entry<User>(localUser).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
 
                     return true;
                 }
@@ -482,7 +506,7 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.isPermited == false && t.user1Id == userId);
+                    var query = db.Transactions.Where(t => t.IsPermited == false && t.User1Id == userId);
                     if (query.Count() == 0)
                         return null;
 
@@ -506,5 +530,46 @@ namespace DataAccessLibrary
             }
             
         }
+
+        public bool SetTokenForUser(int userId, String token)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.Users.Where(u => u.Id == userId);
+                    if (query.Count() == 0)
+                        return false;
+
+                    if (query.Count() > 1)
+                        throw new Exception("More than one user was found");
+
+                    User localUser = query.First();
+                    localUser.TokenKey = token;
+
+                    db.Entry<User>(localUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+        }
+
     }
 }

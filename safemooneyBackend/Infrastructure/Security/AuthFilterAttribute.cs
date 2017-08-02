@@ -9,13 +9,13 @@ using System.Web.Http.Filters;
 using System.Web.Http.Results;
 using System.Security.Principal;
 using DataAccessLibrary;
-using SharedResourcesLibrary.AccountResources;
+using SharedResourcesLibrary;
 
 namespace safemooneyBackend.Security.Filters
 {
     public class AuthFilterAttribute : Attribute, IAuthenticationFilter
     {
-        private DataStorageEmulator db = new DataStorageEmulator();
+        private IDataAccess db = new DataBuilder();
 
         //Position of username in http request string
         private int positionOfun = 2;
@@ -49,7 +49,7 @@ namespace safemooneyBackend.Security.Filters
 
                 if(user != null && user.TokenKey != null && user.TokenKey.Equals(token))
                 {
-                    context.Principal = new GenericPrincipal(new GenericIdentity(user.Login), null);
+                    context.Principal = new GenericPrincipal(new GenericIdentity(user.Username), null);
 
                     return Task.FromResult<object>(null);
                 }
