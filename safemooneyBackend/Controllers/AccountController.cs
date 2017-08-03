@@ -113,26 +113,19 @@ namespace safemooneyBackend.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            if (db.CheckForUser(user.Username))
-                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            User localUser = db.FindUserById(userId);
 
-            String token = String.Empty;
-            bool resultOfOperation = db.RemoveUser(userId, ref token);
-
-            if (!resultOfOperation)
+            if(localUser == null)
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
-            resultOfOperation = db.AddUser(new User()
-            {
-                Id = userId,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Username = user.Username,
-                Password = user.Password,
-                TokenKey = token
-            });
+            localUser.Username = user.Username;
+            localUser.Password = user.Password;
+            localUser.FirstName = user.FirstName;
+            localUser.LastName = user.LastName;
 
-            if(!resultOfOperation)
+            bool resultOfOperation = db.ChangeUserInfo(localUser);
+
+            if (!resultOfOperation)
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
             return Request.CreateResponse(HttpStatusCode.OK);

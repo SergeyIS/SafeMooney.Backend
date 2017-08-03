@@ -1,0 +1,14 @@
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\DataAccessLibrary.dll.config
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\DataAccessLibrary.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\DataAccessLibrary.pdb
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.SqlServer.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\SharedResourcesLibrary.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\SharedResourcesLibrary.pdb
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.xml
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.SqlServer.xml
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\ru\EntityFramework.resources.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\ru\EntityFramework.SqlServer.resources.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.csprojResolveAssemblyReference.cache
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.dll
+D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.pdb

@@ -16,7 +16,6 @@ namespace DataAccessLibrary
         bool CheckForUser(String username);
         void AddUserSafely(String username, String password, String firstName, String lastName);
         void AddUserSafely(User user);
-        bool AddUser(User user);
         List<User> GetAllUsers();
         void AddTransaction(Transaction trans);
         List<Transaction> GetTransactionsForUser(int userID);
@@ -26,5 +25,6 @@ namespace DataAccessLibrary
         bool RemoveUser(int userId, ref String token);
         List<Transaction> FetchTransactions(int userId);
         bool SetTokenForUser(int userId, String token);
+        bool ChangeUserInfo(User user);
     }
 }

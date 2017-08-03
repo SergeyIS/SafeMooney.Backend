@@ -214,5 +214,10 @@ namespace DataAccessLibrary
         {
             throw new NotImplementedException();
         }
+
+        public bool ChangeUserInfo(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

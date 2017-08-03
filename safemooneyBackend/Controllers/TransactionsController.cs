@@ -28,7 +28,7 @@ namespace safemooneyBackend.Controllers
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             //todo: retern users who are friends of user with userId
-
+            //There is opportunity to create transaction for yourself
             IEnumerable<ShortUserModel> userList = db.GetAllUsers().Select(u => new ShortUserModel()
             {
                 UserId = u.Id,
@@ -85,7 +85,7 @@ namespace safemooneyBackend.Controllers
 
             List<Transaction> transactions = db.GetTransactionsForUser(userID);
 
-            if (transactions.Count == 0)
+            if (transactions == null)
                 return Request.CreateResponse(HttpStatusCode.OK);
 
             return Request.CreateResponse(HttpStatusCode.OK, transactions);

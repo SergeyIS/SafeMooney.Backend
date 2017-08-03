@@ -94,10 +94,11 @@ namespace DataAccessLibrary
                 {
                     var query = db.Users.Where(u => u.Username.Equals(login));
 
-                    if (query.Count() == 0)
+                    int countOfUsers = query.Count();
+                    if (countOfUsers == 0)
                         return null;
 
-                    if (query.Count() > 1)
+                    if (countOfUsers > 1)
                         throw new Exception("There's more than one user in the database with such parameter");
 
                     return query.First();
@@ -209,39 +210,6 @@ namespace DataAccessLibrary
             AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
         }
 
-        public bool AddUser(User user)
-        {
-            var r = FindUserById(user.Id);
-            if (FindUserById(user.Id) != null)
-                return false;
-
-            DataStorageContext db = null;
-            try
-            {
-                using (db = new DataStorageContext())
-                {
-                    db.Users.Add(user);
-                }
-
-                return true;
-            }
-            catch(Exception e)
-            {
-                //todo: write log
-                try
-                {
-                    if (db != null)
-                        db.Database.Connection.Close();
-                }
-                catch(Exception ine)
-                {
-                    //todo: write log
-                }
-
-                return false;
-            }
-        }
-
         public bool RemoveUser(int userId, ref String token)
         {          
             DataStorageContext db = null;
@@ -251,17 +219,18 @@ namespace DataAccessLibrary
                 {
                     var query = db.Users.Where(u => u.Id == userId);
 
-                    if (query.Count() == 0)
+                    int countOfUsers = query.Count();
+                    if (countOfUsers == 0)
                         return false;
 
-                    if (query.Count() > 1)
+                    if (countOfUsers > 1)
                         throw new Exception("There's more than one user in the database with such parameters");
 
                     User user = query.First();
 
-                    user.TokenKey = token;
-                    db.Entry<User>(user).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChangesAsync();
+                    token = user.TokenKey;
+                    db.Entry<User>(user).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
                 }
 
                 return true;
@@ -320,11 +289,9 @@ namespace DataAccessLibrary
             {
                 using(db = new DataStorageContext())
                 {
-                    int index = db.Users.Count();
-                    trans.Id = index;
                     trans.IsPermited = false;
-                    db.Entry<Transaction>(trans).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChangesAsync();
+                    db.Entry<Transaction>(trans).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
                 }
             }
             catch(Exception e)
@@ -396,7 +363,7 @@ namespace DataAccessLibrary
                     Transaction localtrans = query.First();
                     localtrans.IsPermited = true;
                     db.Entry<Transaction>(localtrans).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
 
                     return true;
                 }
@@ -571,5 +538,34 @@ namespace DataAccessLibrary
             }
         }
 
+        public bool ChangeUserInfo(User user)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    db.Entry<User>(user).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+        }
     }
 }
