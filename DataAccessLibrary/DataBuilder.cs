@@ -344,9 +344,9 @@ namespace DataAccessLibrary
             }           
         }
 
-        public bool ConfirmTransaction(Transaction trans)
+        public bool ConfirmTransaction(int transId, int userId)
         {
-            if (trans == null)
+            if (transId < 0 || userId < 0)
                 throw new ArgumentNullException();
 
             DataStorageContext db = null;
@@ -354,15 +354,17 @@ namespace DataAccessLibrary
             {
                 using(db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.Id == trans.Id &&
-                        t.User1Id == trans.User1Id && t.User2Id == trans.User2Id);
+                    var query = db.Transactions.Where(t => t.Id == transId && t.User1Id == userId);
 
                     if (query.Count() == 0)
                         return false;
 
-                    Transaction localtrans = query.First();
-                    localtrans.IsPermited = true;
-                    db.Entry<Transaction>(localtrans).State = System.Data.Entity.EntityState.Modified;
+                    if (query.Count() > 1)
+                        throw new Exception("There're more than one transaction with this id in the database");
+
+                    Transaction trans = query.First();
+                    trans.IsPermited = true;
+                    db.Entry(trans).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
                     return true;
@@ -387,6 +389,9 @@ namespace DataAccessLibrary
 
         public bool CloseTransactionForUser(int transId, int userId)
         {
+            if (transId < 0 || userId < 0)
+                throw new ArgumentException("One of arguments has negative value");
+
             DataStorageContext db = null;
             try
             {
@@ -395,13 +400,17 @@ namespace DataAccessLibrary
                     var query = db.Transactions.Where(t => t.Id == transId && t.User1Id == userId);
 
                     int count = query.Count();
-                    if (count == 0 || count > 1)
+
+                    if (count == 0)
                         return false;
+
+                    if (count > 1)
+                        throw new Exception("There're more than one transaction with this id in the database");
 
                     Transaction localTrans = query.First();
                     localTrans.IsClosed = true;
-                    db.Entry<Transaction>(localTrans).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChangesAsync();
+                    db.Entry(localTrans).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
 
                     return true;
                 }
@@ -473,7 +482,7 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.IsPermited == false && t.User1Id == userId);
+                    var query = db.Transactions.Where(t => t.IsClosed == false && (t.User1Id == userId || t.User2Id == userId));
                     if (query.Count() == 0)
                         return null;
 

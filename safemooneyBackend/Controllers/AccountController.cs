@@ -53,6 +53,9 @@ namespace safemooneyBackend.Controllers
                      
             TokenResponseModel response = new TokenResponseModel();
             response.UserId = localUser.Id;
+            response.Username = localUser.Username;
+            response.FirstName = localUser.FirstName;
+            response.LastName = localUser.LastName;
             response.Access_Token = token;
 
             return Request.CreateResponse(HttpStatusCode.OK, response);

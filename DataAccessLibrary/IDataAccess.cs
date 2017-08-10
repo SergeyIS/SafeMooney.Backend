@@ -19,7 +19,7 @@ namespace DataAccessLibrary
         List<User> GetAllUsers();
         void AddTransaction(Transaction trans);
         List<Transaction> GetTransactionsForUser(int userID);
-        bool ConfirmTransaction(Transaction trans);
+        bool ConfirmTransaction(int transId, int userId);
         bool ResetTokenForUser(int userId);
         bool CloseTransactionForUser(int transId, int userId);
         bool RemoveUser(int userId, ref String token);

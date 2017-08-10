@@ -23,7 +23,7 @@ namespace safemooneyBackend.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/{userId}/transactions/getuserlist")]
-        public HttpResponseMessage GetUserList(int userId = -1)
+        public HttpResponseMessage GetUserList(int userId)
         {
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -48,7 +48,7 @@ namespace safemooneyBackend.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/{userId}/transactions/add")]
-        public HttpResponseMessage Add([FromBody]TransactionModel trans, int userId = -1)
+        public HttpResponseMessage Add([FromBody]TransactionModel trans, int userId)
         {
  
             if(userId < 0 || trans == null || trans.count == null || trans.date == null)
@@ -74,16 +74,16 @@ namespace safemooneyBackend.Controllers
         /// <summary>
         /// This method checks transactions table and retern not permited for this user
         /// </summary>
-        /// <param name="userID"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("api/{userId}/transactions/checkqueue")]
-        public HttpResponseMessage CheckQueue(int userID = -1)
+        public HttpResponseMessage CheckQueue(int userId)
         {
-            if (userID < 0)
+            if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            List<Transaction> transactions = db.GetTransactionsForUser(userID);
+            List<Transaction> transactions = db.GetTransactionsForUser(userId);
 
             if (transactions == null)
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -97,24 +97,24 @@ namespace safemooneyBackend.Controllers
         /// <param name="trans"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("api/{userId}/transactions/confirm")]
-        public HttpResponseMessage Confirm([FromBody]TransactionModel trans, int userId = -1)
+        [HttpGet]
+        [Route("api/{userId}/transactions/confirm/{transId}")]
+        public HttpResponseMessage Confirm(int userId, int transId)
         {
-            if (userId < 0 || trans == null)
+            if (userId < 0 || transId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
-
-            Transaction localTrans = new Transaction()
+          
+            try
             {
-                Id = trans.transactionId,
-                User1Id = trans.userId,
-                User2Id = userId
-            };
+                bool resultOfOperation = db.ConfirmTransaction(transId, userId);
 
-            bool resultOfOperation = db.ConfirmTransaction(localTrans);
-
-            if (!resultOfOperation)
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                if (!resultOfOperation)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            }
 
             return Request.CreateResponse(HttpStatusCode.OK);
 
@@ -130,12 +130,21 @@ namespace safemooneyBackend.Controllers
         [Route("api/{userId}/transactions/close/{transId}")]
         public HttpResponseMessage Close(int transId = -1, int userId = -1)
         {
-            bool resultOfOperation = db.CloseTransactionForUser(transId, userId);
-
-            if (!resultOfOperation)
+            if (userId < 0 || transId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
+            try
+            {
+                bool resultOfOperation = db.CloseTransactionForUser(transId, userId);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+                if (!resultOfOperation)
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            }
         }
 
         /// <summary>
