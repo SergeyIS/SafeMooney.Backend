@@ -48,7 +48,7 @@ namespace safemooneyBackend.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/{userId}/transactions/add")]
-        public HttpResponseMessage Add([FromBody]TransactionModel trans, int userId)
+        public HttpResponseMessage Add([FromBody]TransactionRequestModel trans, int userId)
         {
  
             if(userId < 0 || trans == null || trans.count == null || trans.date == null)
@@ -85,10 +85,29 @@ namespace safemooneyBackend.Controllers
 
             List<Transaction> transactions = db.GetTransactionsForUser(userId);
 
-            if (transactions == null)
+            if(transactions == null)
                 return Request.CreateResponse(HttpStatusCode.OK);
 
-            return Request.CreateResponse(HttpStatusCode.OK, transactions);
+            List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
+            foreach (var item in transactions)
+            {
+                User user = db.FindUserById(item.User2Id);
+                if (user == null)
+                    continue;
+
+                response.Add(new TransactionResponseModel()
+                {
+                    transactionData = item,
+                    userData = new UserResponseModel()
+                    {
+                        UserId = user.Id,
+                        Username = user.Username,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName
+                    }
+                });
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         /// <summary>
@@ -159,7 +178,31 @@ namespace safemooneyBackend.Controllers
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            return Request.CreateResponse(HttpStatusCode.OK, db.FetchTransactions(userId));
+            List<Transaction> transactions = db.FetchTransactions(userId);
+
+            if (transactions == null)
+                return Request.CreateResponse(HttpStatusCode.OK);
+
+            List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
+            foreach (var item in transactions)
+            {
+                User user = db.FindUserById(item.User2Id);
+                if (user == null)
+                    continue;
+
+                response.Add(new TransactionResponseModel()
+                {
+                    transactionData = item,
+                    userData = new UserResponseModel()
+                    {
+                        UserId = user.Id,
+                        Username = user.Username,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName                        
+                    }
+                });
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
     }
 }

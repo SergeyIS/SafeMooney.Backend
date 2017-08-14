@@ -175,9 +175,11 @@
     <Compile Include="Infrastructure\Security\TokenGenerator.cs" />
     <Compile Include="Infrastructure\Security\CryptoService.cs" />
     <Compile Include="Models\TokenResponseModel.cs" />
-    <Compile Include="Models\TransactionModel.cs" />
+    <Compile Include="Models\TransactionRequestModel.cs" />
     <Compile Include="Models\ShortUserModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\TransactionResponseModel.cs" />
+    <Compile Include="Models\UserRequestModel.cs" />
+    <Compile Include="Models\UserResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

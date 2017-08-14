@@ -30,7 +30,7 @@ namespace safemooneyBackend.Controllers
          /// <returns></returns>
         [HttpPost]
         [Route("api/account/login")]
-        public HttpResponseMessage LogIn(UserModel user)
+        public HttpResponseMessage LogIn(UserRequestModel user)
         {
             if (user == null || user.Username == null || user.Password == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -82,7 +82,7 @@ namespace safemooneyBackend.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/account/signup")]
-        public HttpResponseMessage SignUp(UserModel user)
+        public HttpResponseMessage SignUp(UserRequestModel user)
         {
             if (user == null || user.Username == null || user.Password == null || 
                 user.Username == "" || user.Password == "")
@@ -108,7 +108,7 @@ namespace safemooneyBackend.Controllers
         [AuthFilter]
         [HttpPost]
         [Route("api/{userId}/account/change")]
-        public HttpResponseMessage Change([FromBody]UserModel user, int userId)
+        public HttpResponseMessage Change([FromBody]UserRequestModel user, int userId)
         {
             if(user == null || user.FirstName == null || user.LastName == null ||
                 user.Username == null || user.Password == null || user.UserId != userId)

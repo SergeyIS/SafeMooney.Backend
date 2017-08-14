@@ -5,7 +5,7 @@ using System.Web;
 
 namespace safemooneyBackend.Models
 {
-    public class TransactionModel
+    public class TransactionRequestModel
     {
         public int transactionId { get; set; }
         public int userId { get; set; }

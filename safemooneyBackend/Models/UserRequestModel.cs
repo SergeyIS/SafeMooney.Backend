@@ -5,7 +5,7 @@ using System.Web;
 
 namespace safemooneyBackend.Models
 {
-    public class UserModel
+    public class UserRequestModel
     {
         public int UserId { get; set; }
         public String Username { get; set; }
