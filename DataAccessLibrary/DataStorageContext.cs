@@ -19,6 +19,7 @@ namespace DataAccessLibrary
 
         public DbSet<User> Users { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<UserImage> UserImages { get; set; }
 
     }
 }

@@ -26,5 +26,7 @@ namespace DataAccessLibrary
         List<Transaction> FetchTransactions(int userId);
         bool SetTokenForUser(int userId, String token);
         bool ChangeUserInfo(User user);
+        bool SetImage(int userId, byte[] bytes);
+        byte[] GetImage(int userId);
     }
 }

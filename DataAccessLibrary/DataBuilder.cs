@@ -576,5 +576,73 @@ namespace DataAccessLibrary
                 return false;
             }
         }
+
+
+        public bool SetImage(int userId, byte[] bytes)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    db.UserImages.Add(new UserImage()
+                    {
+                        UserId = userId,
+                        FileName = userId.ToString() + ".jpg",
+                        Data = bytes 
+                    });
+
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+        }
+
+        public byte[] GetImage(int userId)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.UserImages.Where(img => img.UserId == userId);
+                    if (query == null)
+                        return null;
+
+                    return query.First().Data;
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return null;
+            }
+        }
     }
 }
