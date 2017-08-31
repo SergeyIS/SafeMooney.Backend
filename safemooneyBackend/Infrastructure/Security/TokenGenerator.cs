@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.IO;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace safemooneyBackend.Security.Util
 {
     public class TokenGenerator
     {
-        private const String secretKey = "secret@key";
+        private static String secretKey = "secret@key";
         private String username;
         private String password;
         private String outstr;

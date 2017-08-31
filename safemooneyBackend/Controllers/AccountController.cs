@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Http;
-using safemooneyBackend.Security.Filters;
-using DataAccessLibrary;
-using SharedResourcesLibrary;
 using System.Web.Http.Results;
 using System.Net;
 using System.Net.Http;
 using safemooneyBackend.Models;
 using safemooneyBackend.Security.Util;
-using System.IO;
-using System.Net.Http.Formatting;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
+using safemooneyBackend.Infrastructure.CustomControllers;
+using safemooneyBackend.Security.Filters;
+using DataAccessLibrary;
+using SharedResourcesLibrary;
 
 namespace safemooneyBackend.Controllers
 {
@@ -147,7 +142,6 @@ namespace safemooneyBackend.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [AuthFilter]
         [HttpGet]
         [Route("api/{userId}/getimg")]
         public IHttpActionResult GetImg(int userId)
@@ -181,55 +175,6 @@ namespace safemooneyBackend.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
             return Request.CreateResponse(HttpStatusCode.OK);
-        }
-    }
-
-    public class FileApiResult : IHttpActionResult
-    {
-        public string FileName { get; set; }
-
-        public Stream Content { get; set; }
-
-        public string ContentType { get; set; }
-
-        public long? ContentLength { get; set; }
-
-        public string DispositionType { get; set; }
-
-        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-        {
-            var result =
-                new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new StreamContent(Content)
-                };
-
-            result.Content.Headers.ContentDisposition =
-                new System.Net.Http.Headers.ContentDispositionHeaderValue(DispositionType ?? System.Net.Mime.DispositionTypeNames.Attachment)
-                {
-                    FileNameStar = FileName
-                };
-
-            result.Content.Headers.ContentType =
-                new System.Net.Http.Headers.MediaTypeHeaderValue(ContentType ?? System.Net.Mime.MediaTypeNames.Image.Jpeg);
-
-            if (ContentLength.HasValue)
-                result.Content.Headers.ContentLength = ContentLength;
-
-            return Task.FromResult(result);
-        }
-
-        public FileApiResult(Stream content, String filename, String contentType)
-        {
-            Content = content;
-            FileName = filename;
-            ContentType = contentType;
-        }
-
-        public FileApiResult(Stream content, String filename)
-        {
-            Content = content;
-            FileName = filename;
         }
     }
 }

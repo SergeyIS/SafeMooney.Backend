@@ -1,7 +1,7 @@
-﻿using SharedResourcesLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SharedResourcesLibrary;
 
 namespace DataAccessLibrary
 {
@@ -354,7 +354,7 @@ namespace DataAccessLibrary
             {
                 using(db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.Id == transId && t.User1Id == userId);
+                    var query = db.Transactions.Where(t => t.Id == transId && t.User2Id == userId);
 
                     if (query.Count() == 0)
                         return false;

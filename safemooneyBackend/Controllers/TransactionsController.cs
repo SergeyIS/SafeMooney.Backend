@@ -40,6 +40,8 @@ namespace safemooneyBackend.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, userList);
         }
 
+        
+
         /// <summary>
         /// This method add new not permited transaction
         /// </summary>
