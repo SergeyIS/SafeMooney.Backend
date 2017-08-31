@@ -40,7 +40,58 @@ namespace safemooneyBackend.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, userList);
         }
 
-        
+        [HttpGet]
+        [Route("api/{userId}/tranactions/getuserlist")]
+        public HttpResponseMessage GetUserList(int userId, [FromUri]String search)
+        {
+            //todo: Implement logic of working with search parametr. It's necessary to get fname, lname or username from search
+            if (search == null || search == String.Empty)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            String[] values = search.Split(' ');
+            List<ShortUserModel> userList = new List<ShortUserModel>();
+
+            if (values.Length == 1)
+            {
+                var query = db.GetUsers(values[0]).Select(u => new ShortUserModel()
+                {
+                    UserId = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Username = u.Username
+                });
+                
+                if (query != null)
+                    userList = query.ToList();
+            }
+            else if(values.Length == 2)
+            {
+                var firstQuery = db.GetUsers(values[0], values[1]).Select(u => new ShortUserModel()
+                {
+                    UserId = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Username = u.Username
+                });
+
+                var secondQuery = db.GetUsers(values[1], values[0]).Select(u => new ShortUserModel()
+                {
+                    UserId = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Username = u.Username
+                });
+
+                if(firstQuery != null)
+                    userList.AddRange(firstQuery.ToList());
+
+                if (secondQuery != null)
+                    userList.AddRange(secondQuery.ToList());
+
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, userList);
+        }
 
         /// <summary>
         /// This method add new not permited transaction

@@ -644,5 +644,90 @@ namespace DataAccessLibrary
                 return null;
             }
         }
+
+        /// <summary>
+        /// Return userlist. fname or lname parametrs can be NULL when you want search for only fname or lname.
+        /// </summary>
+        /// <param name="fname">first name</param>
+        /// <param name="lname">last name</param>
+        /// <returns>userlist</returns>
+        public List<User> GetUsers(String fname, String lname)
+        {
+            if (fname == null && lname == null)
+                throw new ArgumentNullException("Both of arguments have NULL value");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    IQueryable<User> query = null;
+                    if(fname == null)
+                    {
+                        query = db.Users.Where(u =>u.LastName.Equals(lname, StringComparison.OrdinalIgnoreCase));
+                    }
+                    else if(lname == null)
+                    {
+                        query = db.Users.Where(u => u.FirstName.Equals(fname, StringComparison.OrdinalIgnoreCase));
+                    }
+                    else
+                    {
+                        query = db.Users.Where(u => u.FirstName.Equals(fname, StringComparison.OrdinalIgnoreCase) && u.LastName.Equals(lname, StringComparison.OrdinalIgnoreCase));
+                    }
+
+                    if (query == null)
+                        return null;
+
+                    return query.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return null;
+            }
+        }
+
+        public List<User> GetUsers(String username)
+        {
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.Users.Where(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+                    if (query == null)
+                        return null;
+
+                    return query.ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return null;
+            }
+        }
+
     }
 }
