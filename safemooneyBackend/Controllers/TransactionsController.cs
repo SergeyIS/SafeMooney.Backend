@@ -36,12 +36,12 @@ namespace safemooneyBackend.Controllers
                 LastName = u.LastName,
                 Username = u.Username
             });
-            
+
             return Request.CreateResponse(HttpStatusCode.OK, userList);
         }
 
         [HttpGet]
-        [Route("api/{userId}/tranactions/getuserlist")]
+        [Route("api/{userId}/transactions/getuserlist")]
         public HttpResponseMessage GetUserList(int userId, [FromUri]String search)
         {
             //todo: Implement logic of working with search parametr. It's necessary to get fname, lname or username from search
@@ -239,7 +239,8 @@ namespace safemooneyBackend.Controllers
             List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
             foreach (var item in transactions)
             {
-                User user = db.FindUserById(item.User2Id);
+                var id = (item.User1Id == userId) ? item.User2Id : item.User1Id;
+                User user = db.FindUserById((item.User1Id == userId) ? item.User2Id : item.User1Id);
                 if (user == null)
                     continue;
 
