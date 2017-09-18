@@ -39,5 +39,8 @@ namespace SharedResourcesLibrary
         [Required]
         [Column("isclosed")]
         public bool IsClosed { get; set; }
+
+        [Column("comment")]
+        public String Comment { get; set; }
     }
 }

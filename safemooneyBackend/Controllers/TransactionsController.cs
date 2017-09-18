@@ -116,7 +116,8 @@ namespace safemooneyBackend.Controllers
                 Date = trans.date,
                 Period = trans.period,
                 IsPermited = false,
-                IsClosed = false
+                IsClosed = false,
+                Comment = trans.comment
             };
 
             db.AddTransaction(transactionObj);
