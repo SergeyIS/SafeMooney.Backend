@@ -14,11 +14,9 @@ using SharedResourcesLibrary;
 
 namespace safemooneyBackend.Controllers
 {
-
     public class AccountController : ApiController
     {
 
-        private static String dirName = "userImages";
         private IDataAccess db = new DataBuilder();
 
         /// <summary>
