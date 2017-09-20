@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using SocialServicesLibrary.VkApi;
+using SharedResourcesLibrary;
 
 namespace safemooneyBackend.Controllers
 {
@@ -13,7 +12,13 @@ namespace safemooneyBackend.Controllers
         [Route("api/oauth/authorize")]
         public HttpResponseMessage Authorize(String code)
         {
-            throw new NotImplementedException();
+            //here is exception
+            VKAuthorization vkAuthorization = new VKAuthorization(null);
+            OAuthAuthorization userAuth = vkAuthorization.Authorize(code);
+            
+            //search database
+
+            return Request.CreateResponse(userAuth);
         }
     }
 }
