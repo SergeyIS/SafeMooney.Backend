@@ -13,7 +13,7 @@ namespace safemooneyBackend.Controllers
         public HttpResponseMessage Authorize(String code)
         {
             //here is exception
-            VKAuthorization vkAuthorization = new VKAuthorization(null);
+            VKAuthorization vkAuthorization = new VKAuthorization();
             OAuthAuthorization userAuth = vkAuthorization.Authorize(code);
             
             //search database

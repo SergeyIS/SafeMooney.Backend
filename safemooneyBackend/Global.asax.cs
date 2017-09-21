@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
-using System.Web.Routing;
+using SocialServicesLibrary.VkApi;
+using System.Configuration;
 
 namespace safemooneyBackend
 {
@@ -11,7 +9,20 @@ namespace safemooneyBackend
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            try
+            {
+                //configurate of Routes
+                GlobalConfiguration.Configure(WebApiConfig.Register);
+                
+                //configurate of VKAuthorization
+                var authConfigurator = (AuthorizeConfigurator)ConfigurationManager.GetSection("athorizeConfigurator");
+                VKAuthorization.Configure(authConfigurator);
+            }
+            catch(Exception e)
+            {
+                //todo: writelog(e)
+            }
+            
         }
     }
 }

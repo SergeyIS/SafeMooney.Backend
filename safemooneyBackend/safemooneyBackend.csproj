@@ -185,7 +185,6 @@
     <Compile Include="Infrastructure\Security\AuthFilterAttribute.cs" />
     <Compile Include="Infrastructure\Security\TokenGenerator.cs" />
     <Compile Include="Infrastructure\Security\CryptoService.cs" />
-    <Compile Include="Models\OAuthAuthorizationModel.cs" />
     <Compile Include="Models\TokenResponseModel.cs" />
     <Compile Include="Models\TransactionRequestModel.cs" />
     <Compile Include="Models\ShortUserModel.cs" />
@@ -222,6 +221,10 @@
     <ProjectReference Include="..\SharedResourcesLibrary\SharedResourcesLibrary.csproj">
       <Project>{1e6d0afb-8dc5-4ea0-9d3b-d367048a8189}</Project>
       <Name>SharedResourcesLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialServicesLibrary\SocialServicesLibrary.csproj">
+      <Project>{c79b4c76-7d6f-4cfa-8848-7e8f9a27b034}</Project>
+      <Name>SocialServicesLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

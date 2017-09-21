@@ -1,0 +1,7 @@
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SocialServicesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SocialServicesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SharedResourcesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SharedResourcesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.csprojResolveAssemblyReference.cache
+D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.pdb
