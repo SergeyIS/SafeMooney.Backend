@@ -1,8 +1,8 @@
 ﻿using System;
-using SharedResourcesLibrary;
+using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
-using System.IO;
+using SocialServicesLibrary.VkApi.Models;
 
 namespace SocialServicesLibrary.VkApi
 {
@@ -17,12 +17,13 @@ namespace SocialServicesLibrary.VkApi
 
             _configurator = configurator;
         }
-        public OAuthAuthorization Authorize(String code)
+
+        public VKAuthorizationResponse Authorize(String code)
         {
             if (_configurator == null)
                 throw new Exception("configuration is not found");
 
-            String url = $"https://oauth.vk.com/access_token?client_id={_configurator.ClientId}&client_secret={_configurator.ClientSecret}&redirect_uri={_configurator.RedirectUri}&code={code}";
+            String url = $"{_configurator.AuthorizationURI}?client_id={_configurator.ClientId}&client_secret={_configurator.ClientSecret}&redirect_uri={_configurator.RedirectUri}&code={code}";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try
@@ -31,11 +32,9 @@ namespace SocialServicesLibrary.VkApi
 
                 using (Stream stream = response.GetResponseStream())
                 {
-                    DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(OAuthAuthorization));
-                    OAuthAuthorization oauthorization = (OAuthAuthorization)jsonFormatter.ReadObject(stream);
-                    //search for user
-
-                    return oauthorization;
+                    DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(VKAuthorizationResponse));
+                    VKAuthorizationResponse authorizationResponse = (VKAuthorizationResponse)jsonFormatter.ReadObject(stream);
+                    return authorizationResponse;
                 }
             }
             catch (Exception e)

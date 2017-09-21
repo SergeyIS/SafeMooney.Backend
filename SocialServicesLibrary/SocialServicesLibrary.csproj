@@ -43,13 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizeConfigurator.cs" />
+    <Compile Include="VKUsers.cs" />
+    <Compile Include="VKAuthorizationResponse.cs" />
     <Compile Include="VKAuthorization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedResourcesLibrary\SharedResourcesLibrary.csproj">
-      <Project>{1e6d0afb-8dc5-4ea0-9d3b-d367048a8189}</Project>
-      <Name>SharedResourcesLibrary</Name>
+    <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj">
+      <Project>{A5BFBCAA-2627-4806-A23E-76143C11C2AD}</Project>
+      <Name>DataAccessLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

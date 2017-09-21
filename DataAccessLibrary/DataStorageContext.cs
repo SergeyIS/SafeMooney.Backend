@@ -6,9 +6,8 @@ namespace DataAccessLibrary
 {
     internal class DataStorageContext : DbContext
     {
-        private static String connection = "default";
 
-        public DataStorageContext() : base(connection)
+        public DataStorageContext() : base("default")
         {
 
         }
@@ -16,6 +15,8 @@ namespace DataAccessLibrary
         public DbSet<User> Users { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<UserImage> UserImages { get; set; }
+        public DbSet<AuthService> AuthServices { get; set; }
+        public DbSet<AuthProvider> AuthProviders { get; set; }
 
     }
 }

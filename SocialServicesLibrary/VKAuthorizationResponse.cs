@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SharedResourcesLibrary
+namespace SocialServicesLibrary.VkApi.Models
 {
     [DataContract]
-    public class OAuthAuthorization
+    public class VKAuthorizationResponse
     {
         [DataMember(Name = "access_token")]
         public String AccessToken { get; set; }

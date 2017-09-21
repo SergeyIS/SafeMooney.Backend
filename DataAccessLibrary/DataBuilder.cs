@@ -729,5 +729,108 @@ namespace DataAccessLibrary
             }
         }
 
+        public AuthService GetServiceData(int providerId, String authId)
+        {
+            if (providerId < 0 || String.IsNullOrEmpty(authId))
+                throw new Exception("It's not allowed to use NULL or empty arguments");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.AuthServices.Where(v=>v.ProviderId.Equals(providerId) && v.AuthId.Equals(authId));
+
+                    if (query.Count() == 0)
+                        return null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("There's more than one authorization servises in the database with such parameters");
+
+                    return query.First();
+                }
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //write log
+                }
+
+                return null;
+            }
+        }
+
+        public bool AddServiceData(AuthService service)
+        {
+            if (service == null)
+                throw new ArgumentNullException("service has NULL value");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    db.AuthServices.Add(service);
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+        }
+
+        public bool ChangeServiceData(AuthService service)
+        {
+            if (service == null)
+                throw new ArgumentNullException("service has NULL value");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    db.Entry<AuthService>(service).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    //todo: write log
+                }
+
+                return false;
+            }
+        }
     }
 }
