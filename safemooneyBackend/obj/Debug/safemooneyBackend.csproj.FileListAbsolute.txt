@@ -111,6 +111,7 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.CodeDom.Providers.DotNe
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.Web.Infrastructure.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Newtonsoft.Json.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\SharedResourcesLibrary.dll
+D:\dev\safemooneyBackend\safemooneyBackend\bin\SocialServicesLibrary.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Net.Http.Formatting.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Cors.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Helpers.dll
@@ -126,6 +127,7 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.WebPages.Razor.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\WebGrease.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\DataAccessLibrary.pdb
 D:\dev\safemooneyBackend\safemooneyBackend\bin\SharedResourcesLibrary.pdb
+D:\dev\safemooneyBackend\safemooneyBackend\bin\SocialServicesLibrary.pdb
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Antlr3.Runtime.pdb
 D:\dev\safemooneyBackend\safemooneyBackend\bin\EntityFramework.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\EntityFramework.SqlServer.xml
@@ -162,5 +164,3 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\ru\System.Web.Http.WebHost.resour
 D:\dev\safemooneyBackend\safemooneyBackend\obj\Debug\safemooneyBackend.csprojResolveAssemblyReference.cache
 D:\dev\safemooneyBackend\safemooneyBackend\obj\Debug\safemooneyBackend.dll
 D:\dev\safemooneyBackend\safemooneyBackend\obj\Debug\safemooneyBackend.pdb
-D:\dev\safemooneyBackend\safemooneyBackend\bin\SocialServicesLibrary.dll
-D:\dev\safemooneyBackend\safemooneyBackend\bin\SocialServicesLibrary.pdb

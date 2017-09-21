@@ -77,3 +77,6 @@ D:\MyProjects\safemooneyBackend\safemooneyBackend\bin\ru\System.Web.Http.WebHost
 D:\MyProjects\safemooneyBackend\safemooneyBackend\obj\Release\safemooneyBackend.csprojResolveAssemblyReference.cache
 D:\MyProjects\safemooneyBackend\safemooneyBackend\obj\Release\safemooneyBackend.dll
 D:\MyProjects\safemooneyBackend\safemooneyBackend\obj\Release\safemooneyBackend.pdb
+D:\dev\safemooneyBackend\safemooneyBackend\obj\Release\safemooneyBackend.csprojResolveAssemblyReference.cache
+D:\dev\safemooneyBackend\safemooneyBackend\obj\Release\safemooneyBackend.dll
+D:\dev\safemooneyBackend\safemooneyBackend\obj\Release\safemooneyBackend.pdb

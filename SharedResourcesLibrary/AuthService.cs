@@ -6,12 +6,13 @@ namespace SharedResourcesLibrary
 {
     public class AuthService
     {
-        [Key]
-        [Column("user_id")]
+        [Column(name:"user_id", Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }
 
         [Key]
-        [Column("provider_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column(name:"provider_id", Order = 1)]
         public int ProviderId { get; set; }
 
         [Column("auth_id")]

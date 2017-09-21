@@ -18,7 +18,7 @@ namespace SocialServicesLibrary.VkApi
             _configurator = configurator;
         }
 
-        public VKAuthorizationResponse Authorize(String code)
+        public VKAuthorizationResponseModel Authorize(String code)
         {
             if (_configurator == null)
                 throw new Exception("configuration is not found");
@@ -32,8 +32,8 @@ namespace SocialServicesLibrary.VkApi
 
                 using (Stream stream = response.GetResponseStream())
                 {
-                    DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(VKAuthorizationResponse));
-                    VKAuthorizationResponse authorizationResponse = (VKAuthorizationResponse)jsonFormatter.ReadObject(stream);
+                    DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(VKAuthorizationResponseModel));
+                    VKAuthorizationResponseModel authorizationResponse = (VKAuthorizationResponseModel)jsonFormatter.ReadObject(stream);
                     return authorizationResponse;
                 }
             }

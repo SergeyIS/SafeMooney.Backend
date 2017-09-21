@@ -12,3 +12,6 @@ D:\MyProjects\safemooneyBackend\DataAccessLibrary\bin\Release\ru\EntityFramework
 D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.csprojResolveAssemblyReference.cache
 D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.dll
 D:\MyProjects\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.pdb
+D:\dev\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.csprojResolveAssemblyReference.cache
+D:\dev\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.dll
+D:\dev\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.pdb

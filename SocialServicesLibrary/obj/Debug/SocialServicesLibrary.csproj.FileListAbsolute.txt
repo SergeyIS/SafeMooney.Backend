@@ -1,7 +1,12 @@
 D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SocialServicesLibrary.dll
 D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SocialServicesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\DataAccessLibrary.dll
 D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SharedResourcesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\EntityFramework.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\DataAccessLibrary.pdb
 D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\SharedResourcesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\EntityFramework.xml
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\ru\EntityFramework.resources.dll
 D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.csprojResolveAssemblyReference.cache
 D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.dll
 D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.pdb

@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizeConfigurator.cs" />
+    <Compile Include="Models\VKUserModel.cs" />
+    <Compile Include="Models\VKUsersResponseModel.cs" />
     <Compile Include="VKUsers.cs" />
-    <Compile Include="VKAuthorizationResponse.cs" />
+    <Compile Include="Models\VKAuthorizationResponseModel.cs" />
     <Compile Include="VKAuthorization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
