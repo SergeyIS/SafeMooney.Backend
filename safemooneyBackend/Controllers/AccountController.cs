@@ -50,7 +50,7 @@ namespace safemooneyBackend.Controllers
             if (localUser == null || !localUser.Password.Equals(user.Password))
             {
                 //write log
-                logger.Info($"User <{user.Username}, {user.Password}> is unauthorized");
+                logger.Info($"User <username: {user.Username}, password: {user.Password}> is unauthorized");
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
             }
                 
@@ -73,7 +73,7 @@ namespace safemooneyBackend.Controllers
             response.Access_Token = token;
 
             //write log
-            logger.Info($"User <{user.Username}> is authorized");
+            logger.Info($"User <username: {user.Username}> is authorized");
 
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
@@ -87,6 +87,9 @@ namespace safemooneyBackend.Controllers
 
             if (!resultOfOperation)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            //write log
+            logger.Info($"User <id: {userId}> logout");
 
             return Request.CreateResponse(HttpStatusCode.OK);
 
@@ -110,7 +113,12 @@ namespace safemooneyBackend.Controllers
             try
             {
                 if (db.CheckForUser(user.Username))
+                {
+                    //write log
+                    logger.Info($"an attempt to create user's account that's already exist <username: {user.Username}>");
                     return Request.CreateResponse(HttpStatusCode.Forbidden);
+                }
+                    
 
                 db.AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
             }
@@ -119,6 +127,8 @@ namespace safemooneyBackend.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
 
+            //write log
+            logger.Info($"the user's account was created <username: {user.Username}, id: {user.UserId}>");
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -136,17 +146,31 @@ namespace safemooneyBackend.Controllers
             User localUser = db.FindUserById(userId);
 
             if(localUser == null)
+            {
+                logger.Fatal($"user was authorized, but not found <id: {userId}>");
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
 
-            localUser.Username = user.Username;
-            localUser.Password = user.Password;
-            localUser.FirstName = user.FirstName;
-            localUser.LastName = user.LastName;
 
-            bool resultOfOperation = db.ChangeUserInfo(localUser);
+
+            User changedUser = new User()
+            {
+                Id = localUser.Id,
+                TokenKey = localUser.TokenKey,
+                Username = user.Username,
+                Password = user.Password,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+            
+
+            bool resultOfOperation = db.ChangeUserInfo(changedUser);
 
             if (!resultOfOperation)
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
+            //write log
+            logger.Info($"user's account was changed from <id: {localUser.Id}, firstname: {localUser.FirstName}, lastname: {localUser.LastName}, username: {localUser.Username}> to <id: {changedUser.Id}, firstname: {changedUser.FirstName}, lastname: {changedUser.LastName}, username: {changedUser.Username}>");
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
