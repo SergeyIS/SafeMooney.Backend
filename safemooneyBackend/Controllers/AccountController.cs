@@ -11,13 +11,21 @@ using safemooneyBackend.Infrastructure.CustomControllers;
 using safemooneyBackend.Security.Filters;
 using DataAccessLibrary;
 using SharedResourcesLibrary;
+using NLog;
 
 namespace safemooneyBackend.Controllers
 {
     public class AccountController : ApiController
     {
+        private Logger logger = null;
+        private IDataAccess db = null;
 
-        private IDataAccess db = new DataBuilder();
+        public AccountController()
+        {
+            //todo: dependency injection
+            logger = LogManager.GetCurrentClassLogger();
+            db = new DataBuilder();
+        }
 
         /// <summary>
          /// This method provide access to resources  for user
@@ -40,7 +48,12 @@ namespace safemooneyBackend.Controllers
             //todo: password decryption
 
             if (localUser == null || !localUser.Password.Equals(user.Password))
+            {
+                //write log
+                logger.Info($"User <{user.Username}, {user.Password}> is unauthorized");
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            }
+                
 
             
             TokenGenerator tgen = new TokenGenerator(user.Username, user.Password);
@@ -58,6 +71,9 @@ namespace safemooneyBackend.Controllers
             response.FirstName = localUser.FirstName;
             response.LastName = localUser.LastName;
             response.Access_Token = token;
+
+            //write log
+            logger.Info($"User <{user.Username}> is authorized");
 
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }

@@ -26,3 +26,5 @@ D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\ru\EntityFramework.SqlServe
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.csprojResolveAssemblyReference.cache
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.pdb
+D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\NLog.dll
+D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\NLog.xml

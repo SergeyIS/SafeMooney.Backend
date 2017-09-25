@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using SharedResourcesLibrary;
+using NLog;
 
 namespace DataAccessLibrary
 {
     public class DataBuilder : IDataAccess
     {
+        Logger logger = null;
+
+        public DataBuilder()
+        {
+            logger = LogManager.GetCurrentClassLogger();
+        }
 
         public User FindUser(String login, String password)
         {
@@ -31,7 +38,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -39,7 +48,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -66,7 +76,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -74,7 +86,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -106,7 +119,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -114,7 +129,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -150,7 +166,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -158,7 +176,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
@@ -187,7 +206,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -195,7 +216,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
@@ -237,7 +259,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -245,7 +269,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -264,7 +289,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -272,7 +299,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -296,7 +324,9 @@ namespace DataAccessLibrary
             }
             catch(Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -304,7 +334,8 @@ namespace DataAccessLibrary
                 }
                 catch(Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
@@ -329,7 +360,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -337,7 +370,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -372,7 +406,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -380,7 +416,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -417,7 +454,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -425,7 +464,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -458,7 +498,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -466,7 +508,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -491,7 +534,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -499,7 +544,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -532,7 +578,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -540,7 +588,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -562,7 +611,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -570,7 +621,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -599,7 +651,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -607,7 +661,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -630,7 +685,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -638,7 +695,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -683,7 +741,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -691,7 +751,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -714,7 +775,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -722,7 +785,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -752,7 +816,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -760,7 +826,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -785,7 +852,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -793,7 +862,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -818,7 +888,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -826,7 +898,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;

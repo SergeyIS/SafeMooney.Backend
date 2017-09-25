@@ -64,45 +64,32 @@ namespace safemooneyBackend.Controllers
                     if (vkUser == null)
                         return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
-                    //mathing by email
-                    if (!String.IsNullOrEmpty(vkUser.Email))
+                    //there is not user with such email in the database
+                    //add new user
+                    db.AddUserSafely(vkUser.UserId, userAuth.AccessToken, vkUser.FirstName, vkUser.LastName);
+                    User newUser = db.FindUserByLogin(vkUser.UserId);
+
+                    //add new social service for new user
+                    bool resultOfOperation = db.AddServiceData(new AuthService() {
+                        AuthId = vkUser.UserId,
+                        UserId = newUser.Id,
+                        ProviderId = 1,
+                        AuthToken = userAuth.AccessToken,
+                        AuthParam = null
+                    });
+
+                    if (!resultOfOperation)
+                        return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
+                    TokenResponseModel response = new TokenResponseModel()
                     {
-                        //todo: search users by email from vkUser
-                    }
-                    else
-                    {
-                        //there is not user with such email in the database
-                        //add new user
-                        db.AddUserSafely(vkUser.UserId, userAuth.AccessToken, vkUser.FirstName, vkUser.LastName);
-                        User newUser = db.FindUserByLogin(vkUser.UserId);
-
-                        //add new social service for new user
-                        bool resultOfOperation = db.AddServiceData(new AuthService() {
-                            AuthId = vkUser.UserId,
-                            UserId = newUser.Id,
-                            ProviderId = 1,
-                            AuthToken = userAuth.AccessToken,
-                            AuthParam = null
-                        });
-
-                        if (!resultOfOperation)
-                            return Request.CreateResponse(HttpStatusCode.InternalServerError);
-
-                        TokenResponseModel response = new TokenResponseModel()
-                        {
-                            UserId = newUser.Id,
-                            Username = newUser.Username,
-                            FirstName = newUser.FirstName,
-                            LastName = newUser.LastName,
-                            Access_Token = userAuth.AccessToken
-                        };
-
-                        return Request.CreateResponse(HttpStatusCode.OK, response);
-                    }
-
-
-                    return Request.CreateResponse(HttpStatusCode.OK, "Your account is not found. We need to create it before you'll can authorize with social service");
-
+                        UserId = newUser.Id,
+                        Username = newUser.Username,
+                        FirstName = newUser.FirstName,
+                        LastName = newUser.LastName,
+                        Access_Token = userAuth.AccessToken
+                    };
+                    return Request.CreateResponse(HttpStatusCode.OK, response);
                 }
             }
             catch(Exception e)
