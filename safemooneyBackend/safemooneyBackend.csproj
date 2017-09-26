@@ -189,6 +189,7 @@
     <Compile Include="Infrastructure\Security\AuthFilterAttribute.cs" />
     <Compile Include="Infrastructure\Security\TokenGenerator.cs" />
     <Compile Include="Infrastructure\Security\CryptoService.cs" />
+    <Compile Include="Models\ChangePasswordRequestModel.cs" />
     <Compile Include="Models\TokenResponseModel.cs" />
     <Compile Include="Models\TransactionRequestModel.cs" />
     <Compile Include="Models\ShortUserModel.cs" />
