@@ -41,7 +41,7 @@ namespace safemooneyBackend.Controllers
         }
 
         [HttpGet]
-        [Route("api/{userId}/tranactions/getuserlist")]
+        [Route("api/{userId}/transactions/getuserlist")]
         public HttpResponseMessage GetUserList(int userId, [FromUri]String search)
         {
             //todo: Implement logic of working with search parametr. It's necessary to get fname, lname or username from search

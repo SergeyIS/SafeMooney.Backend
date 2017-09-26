@@ -26,3 +26,13 @@
 2017-09-26 13:35:48.0078 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
 2017-09-26 13:35:59.6224 | WARN | DataAccessLibrary.DataBuilder | Произошла ошибка базового поставщика в Open.
 2017-09-26 13:35:59.6425 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-09-26 15:05:44.4118 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-09-26 15:12:44.6739 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-09-26 15:12:44.7589 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-09-26 15:12:45.0979 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-09-26 15:12:45.1739 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-09-26 15:14:33.1387 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-09-26 15:15:19.3134 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-09-26 15:15:38.0384 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-09-26 15:38:51.6235 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-09-26 15:39:45.4661 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
