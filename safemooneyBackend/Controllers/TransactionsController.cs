@@ -107,21 +107,27 @@ namespace safemooneyBackend.Controllers
             if(userId < 0 || trans == null || trans.count == null || trans.date == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-
-            Transaction transactionObj = new Transaction()
+            try
             {
-                User1Id = userId,
-                User2Id = trans.userId,
-                Count = trans.count,
-                Date = trans.date,
-                Period = trans.period,
-                IsPermited = false,
-                IsClosed = false
-            };
+                Transaction transactionObj = new Transaction()
+                {
+                    User1Id = userId,
+                    User2Id = trans.userId,
+                    Count = trans.count,
+                    Date = DateTime.Parse(trans.date),
+                    Period = trans.period,
+                    IsPermited = false,
+                    IsClosed = false
+                };
 
-            db.AddTransaction(transactionObj);
+                db.AddTransaction(transactionObj);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(e);
+            }
         }
 
         /// <summary>

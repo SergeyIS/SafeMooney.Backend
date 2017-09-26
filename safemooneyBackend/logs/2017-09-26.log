@@ -36,3 +36,7 @@
 2017-09-26 15:15:38.0384 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
 2017-09-26 15:38:51.6235 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
 2017-09-26 15:39:45.4661 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-09-26 15:46:15.0012 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-09-26 16:14:44.6960 | WARN | DataAccessLibrary.DataBuilder | Произошла ошибка базового поставщика в Open.
+2017-09-26 16:14:46.0907 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-09-26 16:33:23.4935 | INFO | safemooneyBackend.WebApiApplication | Application Start
