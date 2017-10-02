@@ -830,7 +830,7 @@ namespace DataAccessLibrary
                         logger.WarnException(ine.Message, ine);
                 }
 
-                return null;
+                throw e;
             }
         }
 
@@ -866,7 +866,7 @@ namespace DataAccessLibrary
                         logger.WarnException(ine.Message, ine);
                 }
 
-                return false;
+                throw e;
             }
         }
 
