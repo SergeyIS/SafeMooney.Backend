@@ -17,14 +17,14 @@ D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\DataAccessLibrary.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\DataAccessLibrary.pdb
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.SqlServer.dll
+D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\NLog.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\SharedResourcesLibrary.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\SharedResourcesLibrary.pdb
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.xml
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\EntityFramework.SqlServer.xml
+D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\NLog.xml
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\ru\EntityFramework.resources.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.csprojResolveAssemblyReference.cache
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Debug\DataAccessLibrary.pdb
-D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\NLog.dll
-D:\dev\safemooneyBackend\DataAccessLibrary\bin\Debug\NLog.xml

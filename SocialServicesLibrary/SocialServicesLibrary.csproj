@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -43,8 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizeConfigurator.cs" />
+    <Compile Include="Models\VKFriendListModel.cs" />
     <Compile Include="Models\VKUserModel.cs" />
+    <Compile Include="Models\VKFriendsResponseModel.cs" />
     <Compile Include="Models\VKUsersResponseModel.cs" />
+    <Compile Include="VKFriends.cs" />
     <Compile Include="VKUsers.cs" />
     <Compile Include="Models\VKAuthorizationResponseModel.cs" />
     <Compile Include="VKAuthorization.cs" />

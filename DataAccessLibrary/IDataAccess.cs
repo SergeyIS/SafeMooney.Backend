@@ -11,6 +11,8 @@ namespace DataAccessLibrary
         User FindUserByLogin(String login);
         User FindUserByToken(String TokenKey);
 
+        AuthService FindServiceByAuthId(String authId);
+        AuthService FindServiceByUserId(int userId);
         AuthService GetServiceData(int providerId, String authId);
         bool AddServiceData(AuthService service);
         bool ChangeServiceData(AuthService service);

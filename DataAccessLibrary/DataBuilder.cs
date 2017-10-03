@@ -36,7 +36,7 @@ namespace DataAccessLibrary
                     return query.First();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -46,14 +46,14 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
-            }          
+            }
         }
 
         public User FindUserById(int id)
@@ -74,7 +74,7 @@ namespace DataAccessLibrary
                     return query.First();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -84,7 +84,7 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
@@ -92,7 +92,7 @@ namespace DataAccessLibrary
 
                 return null;
             }
-            
+
         }
 
         public User FindUserByLogin(String login)
@@ -117,7 +117,7 @@ namespace DataAccessLibrary
                     return query.First();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -127,7 +127,7 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
@@ -164,7 +164,7 @@ namespace DataAccessLibrary
                     return true;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -174,7 +174,7 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
@@ -204,7 +204,7 @@ namespace DataAccessLibrary
                     db.SaveChanges();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -214,14 +214,14 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
-            }   
+            }
         }
 
         public void AddUserSafely(User user)
@@ -233,11 +233,11 @@ namespace DataAccessLibrary
         }
 
         public bool RemoveUser(int userId, ref String token)
-        {          
+        {
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Users.Where(u => u.Id == userId);
 
@@ -267,7 +267,7 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
@@ -282,12 +282,12 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     return db.Users.ToList();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -297,7 +297,7 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
@@ -315,14 +315,14 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     trans.IsPermited = false;
                     db.Entry<Transaction>(trans).State = System.Data.Entity.EntityState.Added;
                     db.SaveChanges();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (logger != null)
                     logger.WarnException(e.Message, e);
@@ -332,7 +332,7 @@ namespace DataAccessLibrary
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
                     if (logger != null)
                         logger.WarnException(ine.Message, ine);
@@ -349,7 +349,7 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Transactions.Where(t => t.IsPermited == false && t.User2Id == userId);
                     if (query.Count() == 0)
@@ -375,7 +375,7 @@ namespace DataAccessLibrary
                 }
 
                 return null;
-            }           
+            }
         }
 
         public bool ConfirmTransaction(int transId, int userId)
@@ -386,7 +386,7 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Transactions.Where(t => t.Id == transId && t.User2Id == userId);
 
@@ -432,7 +432,7 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Transactions.Where(t => t.Id == transId && t.User1Id == userId);
 
@@ -550,7 +550,7 @@ namespace DataAccessLibrary
 
                 return null;
             }
-            
+
         }
 
         public bool SetTokenForUser(int userId, String token)
@@ -629,7 +629,6 @@ namespace DataAccessLibrary
             }
         }
 
-
         public bool SetImage(int userId, byte[] bytes)
         {
             DataStorageContext db = null;
@@ -641,7 +640,7 @@ namespace DataAccessLibrary
                     {
                         UserId = userId,
                         FileName = userId.ToString() + ".jpg",
-                        Data = bytes 
+                        Data = bytes
                     });
 
                     db.SaveChanges();
@@ -720,11 +719,11 @@ namespace DataAccessLibrary
                 using (db = new DataStorageContext())
                 {
                     IQueryable<User> query = null;
-                    if(fname == null)
+                    if (fname == null)
                     {
-                        query = db.Users.Where(u =>u.LastName.Equals(lname, StringComparison.OrdinalIgnoreCase));
+                        query = db.Users.Where(u => u.LastName.Equals(lname, StringComparison.OrdinalIgnoreCase));
                     }
-                    else if(lname == null)
+                    else if (lname == null)
                     {
                         query = db.Users.Where(u => u.FirstName.Equals(fname, StringComparison.OrdinalIgnoreCase));
                     }
@@ -803,7 +802,7 @@ namespace DataAccessLibrary
             {
                 using (db = new DataStorageContext())
                 {
-                    var query = db.AuthServices.Where(v=>v.ProviderId.Equals(providerId) && v.AuthId.Equals(authId));
+                    var query = db.AuthServices.Where(v => v.ProviderId.Equals(providerId) && v.AuthId.Equals(authId));
 
                     if (query.Count() == 0)
                         return null;
@@ -903,6 +902,88 @@ namespace DataAccessLibrary
                 }
 
                 return false;
+            }
+        }
+
+        public AuthService FindServiceByUserId(int userId)
+        {
+            if (userId < 0)
+                throw new Exception("userId is negative");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.AuthServices.Where(v => v.UserId.Equals(userId));
+
+                    if (query.Count() == 0)
+                        return null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("There's more than one authorization servises in the database with such parameters");
+
+                    return query.First();
+                }
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                throw e;
+            }
+        }
+
+        public AuthService FindServiceByAuthId(String authId)
+        {
+            if (String.IsNullOrEmpty(authId))
+                throw new Exception("authId is NULL");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.AuthServices.Where(v => v.AuthId.Equals(authId));
+
+                    if (query.Count() == 0)
+                        return null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("There's more than one authorization servises in the database with such parameters");
+
+                    return query.First();
+                }
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                throw e;
             }
         }
     }
