@@ -1,0 +1,41 @@
+2017-10-04 14:23:20.6617 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-10-04 14:25:08.4283 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:08.4813 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:08.6603 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:08.7453 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:08.8623 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:08.8873 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:08.9603 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.0063 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.0623 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.0743 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.1443 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.1743 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.2263 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.2363 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.3083 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.3083 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.3883 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.3883 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.4683 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.4983 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.5863 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.5863 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.8463 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.8833 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:09.9553 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:09.9623 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:10.0223 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-04 14:25:10.0523 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 14:25:23.0819 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-10-04 14:46:38.1870 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-10-04 15:34:48.2440 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-10-04 18:12:33.2189 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-10-04 19:35:05.1092 | WARN | DataAccessLibrary.DataBuilder | При обновлении записей возникла ошибка. Дополнительные сведения приведены во внутреннем исключении.
+2017-10-04 19:35:05.3472 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 19:38:18.9713 | WARN | DataAccessLibrary.DataBuilder | При обновлении записей возникла ошибка. Дополнительные сведения приведены во внутреннем исключении.
+2017-10-04 19:38:19.3193 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-04 20:19:38.3631 | INFO | safemooneyBackend.Controllers.AccountController | User <id: 1> logout
+2017-10-04 20:19:45.6615 | INFO | safemooneyBackend.Controllers.AccountController | User <username: Mira> is authorized
+2017-10-04 20:26:09.0275 | INFO | safemooneyBackend.Controllers.AccountController | User <id: 2> logout
+2017-10-04 20:28:21.7470 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized

@@ -100,7 +100,7 @@ namespace safemooneyBackend.Controllers
                     return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
                 if (friendsResponse.Response == null || friendsResponse.Response.Items == null || friendsResponse.Response.Items.Count == 0)
-                    return Request.CreateResponse(HttpStatusCode.OK, "Nothing to show");
+                    return Request.CreateResponse(HttpStatusCode.OK);
 
                 //create response list
                 List<ShortUserModel> userResponseList = new List<ShortUserModel>(friendsResponse.Response.Items.Count);

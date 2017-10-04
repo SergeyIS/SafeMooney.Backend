@@ -126,7 +126,7 @@ namespace safemooneyBackend.Controllers
             }
             catch(Exception e)
             {
-                return Request.CreateResponse(e);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
         }
 
