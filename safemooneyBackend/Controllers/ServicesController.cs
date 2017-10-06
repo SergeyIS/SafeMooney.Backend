@@ -90,7 +90,7 @@ namespace safemooneyBackend.Controllers
                 AuthService service = db.FindServiceByUserId(userId);
 
                 if (service == null || String.IsNullOrEmpty(service.AuthId) || String.IsNullOrEmpty(service.AuthToken))
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "No social service was found");
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
 
                 //searching friends in vk.com
                 VKFriends friendsClient = new VKFriends();
@@ -153,6 +153,31 @@ namespace safemooneyBackend.Controllers
             {
                 //todo: write log
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// This method check for availability of vk account
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>true or false</returns>
+        [HttpGet]
+        [Route("api/{userId}/services/vk/check")]
+        public HttpResponseMessage Check(int userId)
+        {
+            try
+            { 
+                //getting data about social service for user with userId
+                AuthService service = db.FindServiceByUserId(userId);
+
+                if (service == null || String.IsNullOrEmpty(service.AuthId) || String.IsNullOrEmpty(service.AuthToken))
+                    return Request.CreateResponse(HttpStatusCode.OK, "false");
+
+                return Request.CreateResponse(HttpStatusCode.OK, "true");
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
     }
