@@ -1,17 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
-using System.Web.Routing;
+using SocialServicesLibrary.VkApi;
+using System.Configuration;
+using NLog;
 
 namespace safemooneyBackend
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        Logger logger = null;
+       
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            logger = LogManager.GetCurrentClassLogger();
+
+            try
+            {
+                if(logger != null)
+                    logger.Info("Application Start");
+                //configurate of Routes
+                GlobalConfiguration.Configure(WebApiConfig.Register);
+                
+                //configurate of VKAuthorization
+                var authConfigurator = (AuthorizeConfigurator)ConfigurationManager.GetSection("athorizeConfigurator");
+                VKAuthorization.Configure(authConfigurator);
+            }
+            catch(Exception e)
+            {
+                if (logger != null)
+                    logger.Error("Application start error");
+            }
+            
         }
     }
+    
 }

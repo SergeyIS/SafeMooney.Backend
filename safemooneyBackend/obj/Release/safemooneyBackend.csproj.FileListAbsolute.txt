@@ -107,7 +107,9 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.ApplicationInsights.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.Web.Infrastructure.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Newtonsoft.Json.dll
+D:\dev\safemooneyBackend\safemooneyBackend\bin\NLog.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\SharedResourcesLibrary.dll
+D:\dev\safemooneyBackend\safemooneyBackend\bin\SocialServicesLibrary.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Net.Http.Formatting.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Cors.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Helpers.dll
@@ -123,6 +125,7 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.WebPages.Razor.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\WebGrease.dll
 D:\dev\safemooneyBackend\safemooneyBackend\bin\DataAccessLibrary.pdb
 D:\dev\safemooneyBackend\safemooneyBackend\bin\SharedResourcesLibrary.pdb
+D:\dev\safemooneyBackend\safemooneyBackend\bin\SocialServicesLibrary.pdb
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Antlr3.Runtime.pdb
 D:\dev\safemooneyBackend\safemooneyBackend\bin\EntityFramework.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\EntityFramework.SqlServer.xml
@@ -132,6 +135,8 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.AI.Web.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.AI.WindowsServer.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.ApplicationInsights.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\dev\safemooneyBackend\safemooneyBackend\bin\Newtonsoft.Json.xml
+D:\dev\safemooneyBackend\safemooneyBackend\bin\NLog.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Helpers.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Http.Cors.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Mvc.xml
@@ -140,7 +145,6 @@ D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Razor.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.WebPages.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.WebPages.Deployment.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.WebPages.Razor.xml
-D:\dev\safemooneyBackend\safemooneyBackend\bin\Newtonsoft.Json.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Net.Http.Formatting.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Http.xml
 D:\dev\safemooneyBackend\safemooneyBackend\bin\System.Web.Http.WebHost.xml

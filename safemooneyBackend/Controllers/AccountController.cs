@@ -11,15 +11,21 @@ using safemooneyBackend.Infrastructure.CustomControllers;
 using safemooneyBackend.Security.Filters;
 using DataAccessLibrary;
 using SharedResourcesLibrary;
+using NLog;
 
 namespace safemooneyBackend.Controllers
 {
-
     public class AccountController : ApiController
     {
+        private Logger logger = null;
+        private IDataAccess db = null;
 
-        private static String dirName = "userImages";
-        private IDataAccess db = new DataBuilder();
+        public AccountController()
+        {
+            //todo: dependency injection
+            logger = LogManager.GetCurrentClassLogger();
+            db = new DataBuilder();
+        }
 
         /// <summary>
          /// This method provide access to resources  for user
@@ -42,7 +48,12 @@ namespace safemooneyBackend.Controllers
             //todo: password decryption
 
             if (localUser == null || !localUser.Password.Equals(user.Password))
+            {
+                //write log
+                logger.Info($"User <username: {user.Username}, password: {user.Password}> is unauthorized");
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            }
+                
 
             
             TokenGenerator tgen = new TokenGenerator(user.Username, user.Password);
@@ -61,6 +72,9 @@ namespace safemooneyBackend.Controllers
             response.LastName = localUser.LastName;
             response.Access_Token = token;
 
+            //write log
+            logger.Info($"User <username: {user.Username}> is authorized");
+
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
@@ -73,6 +87,9 @@ namespace safemooneyBackend.Controllers
 
             if (!resultOfOperation)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            //write log
+            logger.Info($"User <id: {userId}> logout");
 
             return Request.CreateResponse(HttpStatusCode.OK);
 
@@ -96,7 +113,12 @@ namespace safemooneyBackend.Controllers
             try
             {
                 if (db.CheckForUser(user.Username))
+                {
+                    //write log
+                    logger.Info($"an attempt to create user's account that's already exist <username: {user.Username}>");
                     return Request.CreateResponse(HttpStatusCode.Forbidden);
+                }
+                    
 
                 db.AddUserSafely(user.Username, user.Password, user.FirstName, user.LastName);
             }
@@ -105,16 +127,18 @@ namespace safemooneyBackend.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
 
+            //write log
+            logger.Info($"the user's account was created <username: {user.Username}, id: {user.UserId}>");
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [AuthFilter]
         [HttpPost]
-        [Route("api/{userId}/account/change")]
-        public HttpResponseMessage Change([FromBody]UserRequestModel user, int userId)
+        [Route("api/{userId}/account/changeuserinfo")]
+        public HttpResponseMessage ChangeUserInfo([FromBody]UserRequestModel user, int userId)
         {
-            if(user == null || user.FirstName == null || user.LastName == null ||
-                user.Username == null || user.Password == null || user.UserId != userId)
+            if (user == null || String.IsNullOrEmpty(user.FirstName) || String.IsNullOrEmpty(user.LastName) ||
+                String.IsNullOrEmpty(user.Username))
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
@@ -122,13 +146,61 @@ namespace safemooneyBackend.Controllers
             User localUser = db.FindUserById(userId);
 
             if(localUser == null)
+            {
+                logger.Fatal($"user was authorized, but not found <id: {userId}>");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+
+
+
+            User changedUser = new User()
+            {
+                Id = localUser.Id,
+                TokenKey = localUser.TokenKey,
+                Password = localUser.Password,
+                Username = user.Username,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+            
+
+            bool resultOfOperation = db.ChangeUserInfo(changedUser);
+
+            if (!resultOfOperation)
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
-            localUser.Username = user.Username;
-            localUser.Password = user.Password;
-            localUser.FirstName = user.FirstName;
-            localUser.LastName = user.LastName;
+            UserResponseModel resp = new UserResponseModel() { UserId = changedUser.Id, FirstName = changedUser.FirstName, LastName = changedUser.LastName, Username = changedUser.Username };
 
+            //write log
+            logger.Info($"user's account was changed from <id: {localUser.Id}, firstname: {localUser.FirstName}, lastname: {localUser.LastName}, username: {localUser.Username}> to <id: {changedUser.Id}, firstname: {changedUser.FirstName}, lastname: {changedUser.LastName}, username: {changedUser.Username}>");
+
+            return Request.CreateResponse(HttpStatusCode.OK, resp);
+        }
+
+        [AuthFilter]
+        [HttpPost]
+        [Route("api/{userId}/account/changepass")]
+        public HttpResponseMessage ChangePass([FromBody]ChangePasswordRequestModel userCredential, int userId)
+        {
+            if (userCredential == null || String.IsNullOrEmpty(userCredential.OldPassword) || String.IsNullOrEmpty(userCredential.NewPassword))
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            User localUser = db.FindUserById(userId);
+
+            if (localUser == null)
+            {
+                logger.Fatal($"user was authorized, but not found <id: {userId}>");
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+
+            if(localUser.Password != userCredential.OldPassword)
+            {
+                logger.Info($"user was unauthorized <id: {userId}>");
+                return Request.CreateResponse(HttpStatusCode.Unauthorized);
+            }
+
+            //change password
+            localUser.Password = userCredential.NewPassword;
             bool resultOfOperation = db.ChangeUserInfo(localUser);
 
             if (!resultOfOperation)

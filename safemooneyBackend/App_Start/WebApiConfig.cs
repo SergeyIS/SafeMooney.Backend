@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace safemooneyBackend
@@ -10,7 +7,8 @@ namespace safemooneyBackend
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             config.MapHttpAttributeRoutes();
             

@@ -1,0 +1,16 @@
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\SocialServicesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\SocialServicesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\DataAccessLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\Newtonsoft.Json.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\NLog.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\SharedResourcesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\EntityFramework.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\DataAccessLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\Newtonsoft.Json.xml
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\NLog.xml
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\SharedResourcesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\EntityFramework.xml
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Release\ru\EntityFramework.resources.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Release\SocialServicesLibrary.csprojResolveAssemblyReference.cache
+D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Release\SocialServicesLibrary.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Release\SocialServicesLibrary.pdb

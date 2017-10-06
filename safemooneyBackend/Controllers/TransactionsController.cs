@@ -36,7 +36,7 @@ namespace safemooneyBackend.Controllers
                 LastName = u.LastName,
                 Username = u.Username
             });
-
+            
             return Request.CreateResponse(HttpStatusCode.OK, userList);
         }
 
@@ -107,22 +107,28 @@ namespace safemooneyBackend.Controllers
             if(userId < 0 || trans == null || trans.count == null || trans.date == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-
-            Transaction transactionObj = new Transaction()
+            try
             {
-                User1Id = userId,
-                User2Id = trans.userId,
-                Count = trans.count,
-                Date = trans.date,
-                Period = trans.period,
-                IsPermited = false,
-                IsClosed = false,
-                Comment = trans.comment
-            };
+                Transaction transactionObj = new Transaction()
+                {
+                    User1Id = userId,
+                    User2Id = trans.userId,
+                    Count = trans.count,
+                    Date = DateTime.Parse(trans.date),
+                    Period = trans.period,
+                    IsPermited = false,
+                    IsClosed = false,
+                    Comment = trans.comment
+                };
 
-            db.AddTransaction(transactionObj);
+                db.AddTransaction(transactionObj);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            }
         }
 
         /// <summary>
@@ -145,7 +151,7 @@ namespace safemooneyBackend.Controllers
             List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
             foreach (var item in transactions)
             {
-                User user = db.FindUserById((item.User1Id == userId) ? item.User2Id : item.User1Id);
+                User user = db.FindUserById(item.User2Id);
                 if (user == null)
                     continue;
 
@@ -240,7 +246,7 @@ namespace safemooneyBackend.Controllers
             List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
             foreach (var item in transactions)
             {
-                User user = db.FindUserById((item.User1Id == userId) ? item.User2Id : item.User1Id);
+                User user = db.FindUserById(item.User2Id);
                 if (user == null)
                     continue;
 

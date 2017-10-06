@@ -17,10 +17,12 @@ D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\DataAccessLibrary.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\DataAccessLibrary.pdb
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.SqlServer.dll
+D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\NLog.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\SharedResourcesLibrary.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\SharedResourcesLibrary.pdb
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.xml
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\EntityFramework.SqlServer.xml
+D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\NLog.xml
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\ru\EntityFramework.resources.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\bin\Release\ru\EntityFramework.SqlServer.resources.dll
 D:\dev\safemooneyBackend\DataAccessLibrary\obj\Release\DataAccessLibrary.csprojResolveAssemblyReference.cache

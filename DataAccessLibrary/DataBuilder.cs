@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using SharedResourcesLibrary;
+using NLog;
 
 namespace DataAccessLibrary
 {
     public class DataBuilder : IDataAccess
     {
+        Logger logger = null;
+
+        public DataBuilder()
+        {
+            logger = LogManager.GetCurrentClassLogger();
+        }
 
         public User FindUser(String login, String password)
         {
@@ -29,21 +36,24 @@ namespace DataAccessLibrary
                     return query.First();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
-            }          
+            }
         }
 
         public User FindUserById(int id)
@@ -64,22 +74,25 @@ namespace DataAccessLibrary
                     return query.First();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
             }
-            
+
         }
 
         public User FindUserByLogin(String login)
@@ -104,17 +117,20 @@ namespace DataAccessLibrary
                     return query.First();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -148,17 +164,20 @@ namespace DataAccessLibrary
                     return true;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
@@ -185,21 +204,24 @@ namespace DataAccessLibrary
                     db.SaveChanges();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
-            }   
+            }
         }
 
         public void AddUserSafely(User user)
@@ -211,11 +233,11 @@ namespace DataAccessLibrary
         }
 
         public bool RemoveUser(int userId, ref String token)
-        {          
+        {
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Users.Where(u => u.Id == userId);
 
@@ -237,15 +259,18 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -257,22 +282,25 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     return db.Users.ToList();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -287,24 +315,27 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     trans.IsPermited = false;
                     db.Entry<Transaction>(trans).State = System.Data.Entity.EntityState.Added;
                     db.SaveChanges();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch(Exception ine)
+                catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 throw e;
@@ -318,9 +349,9 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
-                    var query = db.Transactions.Where(t => t.IsPermited == false && t.User2Id == userId);
+                    var query = db.Transactions.Where(t => t.IsPermited == false && t.IsClosed == false && t.User2Id == userId);
                     if (query.Count() == 0)
                         return null;
 
@@ -329,7 +360,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -337,11 +370,12 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
-            }           
+            }
         }
 
         public bool ConfirmTransaction(int transId, int userId)
@@ -352,7 +386,7 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Transactions.Where(t => t.Id == transId && t.User2Id == userId);
 
@@ -372,7 +406,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -380,7 +416,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -395,7 +432,7 @@ namespace DataAccessLibrary
             DataStorageContext db = null;
             try
             {
-                using(db = new DataStorageContext())
+                using (db = new DataStorageContext())
                 {
                     var query = db.Transactions.Where(t => t.Id == transId && t.User1Id == userId);
 
@@ -417,7 +454,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -425,7 +464,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -458,7 +498,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -466,7 +508,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -491,7 +534,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -499,12 +544,13 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
             }
-            
+
         }
 
         public bool SetTokenForUser(int userId, String token)
@@ -532,7 +578,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -540,7 +588,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -562,7 +611,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -570,13 +621,13 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
             }
         }
-
 
         public bool SetImage(int userId, byte[] bytes)
         {
@@ -589,7 +640,7 @@ namespace DataAccessLibrary
                     {
                         UserId = userId,
                         FileName = userId.ToString() + ".jpg",
-                        Data = bytes 
+                        Data = bytes
                     });
 
                     db.SaveChanges();
@@ -599,7 +650,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -607,7 +660,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return false;
@@ -630,7 +684,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -638,7 +694,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -662,11 +719,11 @@ namespace DataAccessLibrary
                 using (db = new DataStorageContext())
                 {
                     IQueryable<User> query = null;
-                    if(fname == null)
+                    if (fname == null)
                     {
-                        query = db.Users.Where(u =>u.LastName.Equals(lname, StringComparison.OrdinalIgnoreCase));
+                        query = db.Users.Where(u => u.LastName.Equals(lname, StringComparison.OrdinalIgnoreCase));
                     }
-                    else if(lname == null)
+                    else if (lname == null)
                     {
                         query = db.Users.Where(u => u.FirstName.Equals(fname, StringComparison.OrdinalIgnoreCase));
                     }
@@ -683,7 +740,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -691,7 +750,8 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
@@ -714,7 +774,9 @@ namespace DataAccessLibrary
             }
             catch (Exception e)
             {
-                //todo: write log
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
                 try
                 {
                     if (db != null)
@@ -722,12 +784,207 @@ namespace DataAccessLibrary
                 }
                 catch (Exception ine)
                 {
-                    //todo: write log
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
                 }
 
                 return null;
             }
         }
 
+        public AuthService GetServiceData(int providerId, String authId)
+        {
+            if (providerId < 0 || String.IsNullOrEmpty(authId))
+                throw new Exception("It's not allowed to use NULL or empty arguments");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.AuthServices.Where(v => v.ProviderId.Equals(providerId) && v.AuthId.Equals(authId));
+
+                    if (query.Count() == 0)
+                        return null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("There's more than one authorization servises in the database with such parameters");
+
+                    return query.First();
+                }
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                throw e;
+            }
+        }
+
+        public bool AddServiceData(AuthService service)
+        {
+            if (service == null)
+                throw new ArgumentNullException("service has NULL value");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    db.AuthServices.Add(service);
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                throw e;
+            }
+        }
+
+        public bool ChangeServiceData(AuthService service)
+        {
+            if (service == null)
+                throw new ArgumentNullException("service has NULL value");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    db.Entry<AuthService>(service).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                return false;
+            }
+        }
+
+        public AuthService FindServiceByUserId(int userId)
+        {
+            if (userId < 0)
+                throw new Exception("userId is negative");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.AuthServices.Where(v => v.UserId.Equals(userId));
+
+                    if (query.Count() == 0)
+                        return null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("There's more than one authorization servises in the database with such parameters");
+
+                    return query.First();
+                }
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                throw e;
+            }
+        }
+
+        public AuthService FindServiceByAuthId(String authId)
+        {
+            if (String.IsNullOrEmpty(authId))
+                throw new Exception("authId is NULL");
+
+            DataStorageContext db = null;
+            try
+            {
+                using (db = new DataStorageContext())
+                {
+                    var query = db.AuthServices.Where(v => v.AuthId.Equals(authId));
+
+                    if (query.Count() == 0)
+                        return null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("There's more than one authorization servises in the database with such parameters");
+
+                    return query.First();
+                }
+            }
+            catch (Exception e)
+            {
+                if (logger != null)
+                    logger.WarnException(e.Message, e);
+
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    if (logger != null)
+                        logger.WarnException(ine.Message, ine);
+                }
+
+                throw e;
+            }
+        }
     }
 }

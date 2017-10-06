@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace safemooneyBackend.Models
 {
@@ -7,7 +10,7 @@ namespace safemooneyBackend.Models
         public int transactionId { get; set; }
         public int userId { get; set; }
         public string count { get; set; }
-        public DateTime date { get; set; }
+        public String date { get; set; }
         public int period { get; set; }
         public String comment { get; set; }
     }

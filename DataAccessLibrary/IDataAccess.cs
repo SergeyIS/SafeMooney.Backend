@@ -10,6 +10,13 @@ namespace DataAccessLibrary
         User FindUserById(int id);
         User FindUserByLogin(String login);
         User FindUserByToken(String TokenKey);
+
+        AuthService FindServiceByAuthId(String authId);
+        AuthService FindServiceByUserId(int userId);
+        AuthService GetServiceData(int providerId, String authId);
+        bool AddServiceData(AuthService service);
+        bool ChangeServiceData(AuthService service);
+
         bool CheckForUser(String username);
         void AddUserSafely(String username, String password, String firstName, String lastName);
         void AddUserSafely(User user);
