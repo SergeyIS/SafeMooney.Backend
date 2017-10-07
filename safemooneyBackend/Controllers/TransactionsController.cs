@@ -151,7 +151,7 @@ namespace safemooneyBackend.Controllers
             List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
             foreach (var item in transactions)
             {
-                User user = db.FindUserById(item.User2Id);
+                User user = db.FindUserById((item.User1Id == userId) ? item.User2Id : item.User1Id);
                 if (user == null)
                     continue;
 
@@ -246,7 +246,7 @@ namespace safemooneyBackend.Controllers
             List<TransactionResponseModel> response = new List<TransactionResponseModel>(transactions.Count);
             foreach (var item in transactions)
             {
-                User user = db.FindUserById(item.User2Id);
+                User user = db.FindUserById((item.User1Id == userId) ? item.User2Id : item.User1Id);
                 if (user == null)
                     continue;
 
