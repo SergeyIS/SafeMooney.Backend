@@ -10,6 +10,9 @@ using safemooneyBackend.Models;
 using System.Collections.Generic;
 
 using safemooneyBackend.Security.Filters;
+using System.Threading.Tasks;
+using System.Net.Mail;
+using SocialServicesLibrary.Email;
 
 namespace safemooneyBackend.Controllers
 {
@@ -181,6 +184,17 @@ namespace safemooneyBackend.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+        }
+
+        //[AuthFilter]
+        [HttpGet]
+        [Route("api/{userId}/services/email/sendinvent")]
+        public HttpResponseMessage SendInvention(int userId, [FromUri]String email)
+        {
+            EmailSender sender = new EmailSender();
+            
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

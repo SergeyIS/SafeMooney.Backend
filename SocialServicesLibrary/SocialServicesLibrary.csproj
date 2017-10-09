@@ -46,15 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorizeConfigurator.cs" />
-    <Compile Include="Models\VKFriendListModel.cs" />
-    <Compile Include="Models\VKUserModel.cs" />
-    <Compile Include="Models\VKFriendsResponseModel.cs" />
-    <Compile Include="Models\VKUsersResponseModel.cs" />
-    <Compile Include="VKFriends.cs" />
-    <Compile Include="VKUsers.cs" />
-    <Compile Include="Models\VKAuthorizationResponseModel.cs" />
-    <Compile Include="VKAuthorization.cs" />
+    <Compile Include="Email\EmailConfigurator.cs" />
+    <Compile Include="Email\EmailSender.cs" />
+    <Compile Include="Email\MessageBuilder.cs" />
+    <Compile Include="VK\AuthorizeConfigurator.cs" />
+    <Compile Include="VK\Models\VKFriendListModel.cs" />
+    <Compile Include="VK\Models\VKUserModel.cs" />
+    <Compile Include="VK\Models\VKFriendsResponseModel.cs" />
+    <Compile Include="VK\Models\VKUsersResponseModel.cs" />
+    <Compile Include="VK\VKFriends.cs" />
+    <Compile Include="VK\VKUsers.cs" />
+    <Compile Include="VK\Models\VKAuthorizationResponseModel.cs" />
+    <Compile Include="VK\VKAuthorization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +69,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
