@@ -8,11 +8,10 @@ using DataAccessLibrary;
 using SharedResourcesLibrary;
 using safemooneyBackend.Models;
 using System.Collections.Generic;
-
 using safemooneyBackend.Security.Filters;
-using System.Threading.Tasks;
-using System.Net.Mail;
 using SocialServicesLibrary.Email;
+using SocialServicesLibrary.Email.Models;
+using System.IO;
 
 namespace safemooneyBackend.Controllers
 {
@@ -186,13 +185,31 @@ namespace safemooneyBackend.Controllers
             }
         }
 
-        //[AuthFilter]
+        [AuthFilter]
         [HttpGet]
         [Route("api/{userId}/services/email/sendinvent")]
-        public HttpResponseMessage SendInvention(int userId, [FromUri]String email)
+        public HttpResponseMessage SendInvention(int userId, [FromUri]String email, [FromUri]String signup_url)
         {
-            EmailSender sender = new EmailSender();
-            
+            try
+            {
+                StreamReader messageTemplateFile = (StreamReader)MessageBuilder.GetMessageTemplate("emailTemplate");
+
+                MessageBuilderContext messageContext = new MessageBuilderContext()
+                {
+                    TemplateFile = messageTemplateFile,
+                    SenderName = RequestContext.Principal.Identity.Name,
+                    Refer = signup_url
+                };
+                MessageBuilder messageBuilder = new MessageBuilder(messageContext);
+
+                EmailSender.SendMessageAsync(email, messageBuilder.GetMessage());
+
+            }
+            catch (Exception e)
+            {
+                //todo: write log
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

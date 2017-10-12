@@ -14,3 +14,6 @@ D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\ru\EntityFramework.reso
 D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.csprojResolveAssemblyReference.cache
 D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.dll
 D:\dev\safemooneyBackend\SocialServicesLibrary\obj\Debug\SocialServicesLibrary.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\NVelocity.dll
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\NVelocity.pdb
+D:\dev\safemooneyBackend\SocialServicesLibrary\bin\Debug\NVelocity.xml

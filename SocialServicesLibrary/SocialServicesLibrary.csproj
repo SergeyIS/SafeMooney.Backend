@@ -34,9 +34,14 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NVelocity, Version=1.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.NVelocity.1.1.1\lib\net40\NVelocity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +54,7 @@
     <Compile Include="Email\EmailConfigurator.cs" />
     <Compile Include="Email\EmailSender.cs" />
     <Compile Include="Email\MessageBuilder.cs" />
+    <Compile Include="Email\Models\MessageBuilderContext.cs" />
     <Compile Include="VK\AuthorizeConfigurator.cs" />
     <Compile Include="VK\Models\VKFriendListModel.cs" />
     <Compile Include="VK\Models\VKUserModel.cs" />

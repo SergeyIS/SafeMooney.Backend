@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SocialServicesLibrary.Email
@@ -19,7 +16,7 @@ namespace SocialServicesLibrary.Email
             _configurator = configurator;
         }
 
-        public void SendMessageAsync(MailMessage message, MailAddress to)
+        public static void SendMessageAsync(String email, String message)
         {
             if(_configurator == null || String.IsNullOrEmpty(_configurator.SmtpServer) || String.IsNullOrEmpty(_configurator.Username) || 
                 String.IsNullOrEmpty(_configurator.Password) || String.IsNullOrEmpty(_configurator.From))
@@ -30,12 +27,17 @@ namespace SocialServicesLibrary.Email
             Task.Run(() => {
                 try
                 {
-                    message.From = new MailAddress(_configurator.From, _configurator.Alias);
+                    MailMessage _message = new MailMessage(new MailAddress(_configurator.From, _configurator.Alias), new MailAddress(email))
+                    {
+                        Body = message,
+                        IsBodyHtml = true
+                    };
+
                     using (SmtpClient smtp = new SmtpClient(_configurator.SmtpServer, _configurator.Port))
                     {
                         smtp.Credentials = new NetworkCredential(_configurator.Username, _configurator.Password);
                         smtp.EnableSsl = true;
-                        smtp.Send(message);
+                        smtp.Send(_message);
                     }
                 }
                 catch (Exception e)
