@@ -52,7 +52,7 @@ namespace safemooneyBackend.Controllers
                         AuthId = response.UserId,
                         ProviderId = 1,
                         AuthToken = response.AccessToken,
-                        AuthParam = null
+                        AuthParam = response.Email
                     };
 
                     if (!db.AddServiceData(userService))
@@ -127,7 +127,8 @@ namespace safemooneyBackend.Controllers
                                 Username = localUser.Username,
                                 UserId = localUser.Id,
                                 AuthorizationId = vkuser.UserId,
-                                Availability = true
+                                Availability = true,
+                                Email = vkuser.Email
                             });
                         }
                         else
@@ -138,7 +139,8 @@ namespace safemooneyBackend.Controllers
                                 LastName = vkuser.LastName,
                                 Username = vkuser.FirstName,
                                 AuthorizationId = vkuser.UserId,
-                                Availability = false
+                                Availability = false,
+                                Email = vkuser.Email
                             });
                         }
                     }
