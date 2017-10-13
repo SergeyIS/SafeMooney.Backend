@@ -114,7 +114,7 @@ namespace safemooneyBackend.Controllers
                     User1Id = userId,
                     User2Id = trans.userId,
                     Count = trans.count,
-                    Date = DateTime.Parse(trans.date),
+                    Date = DateTime.Now,
                     Period = trans.period,
                     IsPermited = false,
                     IsClosed = false,

@@ -47,3 +47,5 @@
 2017-10-13 12:50:25.3863 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
 2017-10-13 12:52:52.6668 | INFO | safemooneyBackend.WebApiApplication | Application Start
 2017-10-13 14:26:46.5170 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-10-13 17:17:43.0586 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-10-13 17:25:13.9184 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
