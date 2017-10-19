@@ -13,6 +13,7 @@ namespace safemooneyBackend.Models
         public String LastName { get; set; }
         public bool Availability { get; set; }
         public String AuthorizationId { get; set; }
-        public String Email { get; set; }
+
+        public String PhotoUri { get; set; }
     }
 }

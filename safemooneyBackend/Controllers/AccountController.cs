@@ -11,6 +11,7 @@ using safemooneyBackend.Infrastructure.CustomControllers;
 using safemooneyBackend.Security.Filters;
 using DataAccessLibrary;
 using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 using NLog;
 
 namespace safemooneyBackend.Controllers
@@ -215,35 +216,48 @@ namespace safemooneyBackend.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/{userId}/getimg")]
-        public IHttpActionResult GetImg(int userId)
+        [Route("api/getimg/{filename}")]
+        public IHttpActionResult GetImg(String filename)
         {
-            byte[] img = db.GetImage(userId);
-            if (img == null)
-                return new NotFoundResult(this);
+            String[] filenameSplitted = null;
+            int userId = 0;
 
-            MemoryStream ms = new MemoryStream(db.GetImage(userId));
-            return new FileApiResult(ms, $"{userId}.jpg");
+            if (filename == null || (filenameSplitted = filename.Split('.')).Length != 2 || !Int32.TryParse(filenameSplitted[0], out userId))
+                return BadRequest();
+
+
+            UserImage img = db.GetImage(userId);
+            if (img == null)
+            {
+                img = db.GetImage(0);
+                if (img == null)
+                    return NotFound();
+            }
+
+            img.Name = filenameSplitted[0];
+            img.Format = filenameSplitted[1];
+
+            return new ImageApiResult(img);
         }
 
-        [AuthFilter]
         [HttpPost]
         [Route("api/{userId}/setimg")]
-        public HttpResponseMessage SetImg(int userId)
+        public HttpResponseMessage SetImg(int userId, [FromUri]String filename)
         {
             var httpRequest = HttpContext.Current.Request;
 
-            if (httpRequest.Files.Count == 0)
+            if (httpRequest.Files.Count == 0 || String.IsNullOrEmpty(filename))
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             HttpPostedFile file = httpRequest.Files.Get(0);
-            
-
             byte[] bytes = new byte[file.InputStream.Length];
             file.InputStream.Read(bytes, 0, bytes.Length);
-            bool res = db.SetImage(userId, bytes);
 
-            if(!res)
+            var fileSplitted = filename.Split('.');
+            if (filename == null || fileSplitted.Length != 2)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            if(!db.SetImage(new UserImage() { UserId = userId, Name = fileSplitted[0], Format = fileSplitted[1], Data = bytes }))
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
 
             return Request.CreateResponse(HttpStatusCode.OK);

@@ -49,7 +49,7 @@ namespace safemooneyBackend
             catch(Exception e)
             {
                 if (logger != null)
-                    logger.Error("Application start error", e.Message);
+                    logger.Fatal("Application start error", e.Message);
 
             }
             

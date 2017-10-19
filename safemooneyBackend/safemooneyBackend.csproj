@@ -188,6 +188,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomControllers\FileApiResult.cs" />
+    <Compile Include="Infrastructure\CustomControllers\ImageApiResult.cs" />
     <Compile Include="Infrastructure\Security\AuthFilterAttribute.cs" />
     <Compile Include="Infrastructure\Security\TokenGenerator.cs" />
     <Compile Include="Infrastructure\Security\CryptoService.cs" />

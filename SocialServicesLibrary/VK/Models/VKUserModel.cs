@@ -17,5 +17,14 @@ namespace SocialServicesLibrary.VkApi.Models
 
         [DataMember(Name = "email")]
         public String Email { get; set; }
+
+        [DataMember(Name = "photo_50")]
+        public String SmallPhotoUri { get; set; }
+
+        [DataMember(Name = "photo_100")]
+        public String MediumPhotoUri { get; set; }
+
+        [DataMember(Name = "photo_200")]
+        public String LargePhotoUri { get; set; }
     }
 }

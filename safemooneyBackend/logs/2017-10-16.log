@@ -1,0 +1,34 @@
+2017-10-16 23:21:10.8588 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-10-16 23:22:26.8831 | WARN | DataAccessLibrary.DataBuilder | При инициализации базы данных возникло исключение. Дополнительные сведения можно получить через объект InnerException.
+2017-10-16 23:22:26.9281 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:24:48.6242 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:24:48.6632 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:24:59.8459 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:24:59.8799 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:27:20.5599 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:27:20.5929 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:30:28.9417 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:30:28.9737 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:35:00.0342 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:35:00.1362 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:38:08.8760 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:38:08.9180 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:39:54.7010 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:39:54.7610 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:41:06.1211 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:41:06.1521 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:42:46.8869 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:42:46.9129 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:45:21.3457 | INFO | safemooneyBackend.WebApiApplication | Application Start
+2017-10-16 23:45:27.8501 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:45:27.8791 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:45:27.9811 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:45:28.1361 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:46:18.6100 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:46:18.6660 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:47:07.6068 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:47:07.6628 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:47:25.2308 | WARN | DataAccessLibrary.DataBuilder | Последовательность не содержит элементов
+2017-10-16 23:47:25.2608 | WARN | DataAccessLibrary.DataBuilder | Невозможно завершить операцию, поскольку класс DbContext был удален.
+2017-10-16 23:49:18.7773 | INFO | safemooneyBackend.Controllers.AccountController | User <username: SergeyIS> is authorized
+2017-10-16 23:50:35.0357 | INFO | safemooneyBackend.Controllers.TransactionsController | user 7 added transaction

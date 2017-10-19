@@ -6,22 +6,25 @@ using SocialServicesLibrary.VkApi;
 using SocialServicesLibrary.VkApi.Models;
 using DataAccessLibrary;
 using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 using safemooneyBackend.Models;
 using System.Collections.Generic;
 using safemooneyBackend.Security.Filters;
 using SocialServicesLibrary.Email;
 using SocialServicesLibrary.Email.Models;
 using System.IO;
+using NLog;
 
 namespace safemooneyBackend.Controllers
 {
     public class ServicesController : ApiController
     {
         private IDataAccess db = null;
-
+        private Logger logger = null;
         public ServicesController()
         {
             db = new DataBuilder();
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         /// <summary>
@@ -36,11 +39,18 @@ namespace safemooneyBackend.Controllers
         {
             try
             {
+                //write log
+                logger.Info("connecting vk.com to get access_token");
+
                 VKAuthorization authorizator = new VKAuthorization();
                 VKAuthorizationResponseModel response = authorizator.Authorize(code);
 
                 if (response == null)
+                {
+                    logger.Warn($"user {userId} isn't authorized by vk.com");
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+                    
 
                 AuthService service = db.GetServiceData(1, response.UserId);
 
@@ -52,23 +62,34 @@ namespace safemooneyBackend.Controllers
                         AuthId = response.UserId,
                         ProviderId = 1,
                         AuthToken = response.AccessToken,
-                        AuthParam = response.Email
+                        AuthParam = null
                     };
 
                     if (!db.AddServiceData(userService))
+                    {
+                        logger.Error("could not add service");
                         return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                    }
+                        
                 }
                 else
                 {
                     service.AuthToken = response.AccessToken;
                     if (!db.ChangeServiceData(service))
+                    {
+                        logger.Error("could not change service data");
                         return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                    }
+                        
                 }
-
+                logger.Info($"A service was added or changed by user {userId}");
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch(Exception e)
             {
+                //write log
+                logger.Error($"An error was encountered while adding a service|user_id: {userId}", e.Message);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
         }
@@ -87,7 +108,11 @@ namespace safemooneyBackend.Controllers
                 User currentUser = db.FindUserById(userId);
 
                 if (currentUser == null || currentUser.TokenKey == null)
+                {
+                    logger.Fatal($"user {userId} was authorized, but not found");
                     return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                }
+                    
 
                 //getting data about social service for user with userId
                 AuthService service = db.FindServiceByUserId(userId);
@@ -128,7 +153,7 @@ namespace safemooneyBackend.Controllers
                                 UserId = localUser.Id,
                                 AuthorizationId = vkuser.UserId,
                                 Availability = true,
-                                Email = vkuser.Email
+                                PhotoUri = vkuser.SmallPhotoUri
                             });
                         }
                         else
@@ -140,13 +165,13 @@ namespace safemooneyBackend.Controllers
                                 Username = vkuser.FirstName,
                                 AuthorizationId = vkuser.UserId,
                                 Availability = false,
-                                Email = vkuser.Email
+                                PhotoUri = vkuser.SmallPhotoUri
                             });
                         }
                     }
                     catch(Exception e)
                     {
-                        //todo: write log
+                        logger.Fatal($"couldn't add vkuser to response list", e.Message);
                         continue;
                     }
                 }
@@ -156,7 +181,7 @@ namespace safemooneyBackend.Controllers
             }
             catch (Exception e)
             {
-                //todo: write log
+                logger.Error($"An error was encountered while searching|user_id: {userId}", e.Message);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
@@ -183,6 +208,7 @@ namespace safemooneyBackend.Controllers
             }
             catch(Exception e)
             {
+                logger.Error($"An error was encountered while checking social service|user_id: {userId}", e.Message);
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
@@ -207,12 +233,18 @@ namespace safemooneyBackend.Controllers
                 EmailSender.SendMessageAsync(email, messageBuilder.GetMessage());
 
             }
+            catch(FileNotFoundException e)
+            {
+                logger.Fatal("email template file wasn't found", e);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
             catch (Exception e)
             {
-                //todo: write log
+                logger.Warn($"An error was encountered while sending invitation by user|user_id: {userId}", e);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
 
+            logger.Info($"Send invitation by user {userId}");
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

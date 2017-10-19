@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SharedResourcesLibrary
+namespace SharedResourcesLibrary.Models
 {
     public class UserImage
     {
@@ -12,8 +12,12 @@ namespace SharedResourcesLibrary
         public int UserId { get; set; }
 
         [Required]
-        [Column("filename")]
-        public String FileName { get; set; }
+        [Column("name")]
+        public String Name { get; set; }
+
+        [Required]
+        [Column("format")]
+        public String Format { get; set; }
 
         [Column("data")]
         public byte[] Data { get; set; }

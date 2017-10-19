@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 using NLog;
+
 
 namespace DataAccessLibrary
 {
@@ -629,20 +631,22 @@ namespace DataAccessLibrary
             }
         }
 
-        public bool SetImage(int userId, byte[] bytes)
+        public bool SetImage(UserImage img)
         {
             DataStorageContext db = null;
             try
             {
                 using (db = new DataStorageContext())
                 {
-                    db.UserImages.Add(new UserImage()
+                    if(db.UserImages.Where(i => i.UserId.Equals(img.UserId)) == null)
                     {
-                        UserId = userId,
-                        FileName = userId.ToString() + ".jpg",
-                        Data = bytes
-                    });
-
+                        db.UserImages.Add(img);
+                    }
+                    else
+                    {
+                        db.Entry<UserImage>(img).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    
                     db.SaveChanges();
                 }
 
@@ -668,18 +672,18 @@ namespace DataAccessLibrary
             }
         }
 
-        public byte[] GetImage(int userId)
+        public UserImage GetImage(int userId)
         {
             DataStorageContext db = null;
             try
             {
                 using (db = new DataStorageContext())
                 {
-                    var query = db.UserImages.Where(img => img.UserId == userId);
+                    var query = db.UserImages.Where(i => i.UserId == userId);
                     if (query == null)
                         return null;
 
-                    return query.First().Data;
+                    return query.First();
                 }
             }
             catch (Exception e)

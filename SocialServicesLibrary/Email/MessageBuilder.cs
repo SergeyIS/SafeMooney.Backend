@@ -41,11 +41,11 @@ namespace SocialServicesLibrary.Email
         public static Object GetMessageTemplate(String name)
         {
             if (!MemoryCache.Default.Any(c => c.Key.Equals(name)))
-                throw new Exception("email template is not found");
+                throw new FileNotFoundException("email template is not found");
 
             CacheItem citem = MemoryCache.Default.GetCacheItem(name);
             if (citem == null || citem.Value == null)
-                throw new Exception("email template is not found");
+                throw new FileNotFoundException("email template is not found");
 
             return citem.Value;
         }

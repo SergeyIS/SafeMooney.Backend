@@ -14,8 +14,5 @@ namespace SocialServicesLibrary.VkApi.Models
 
         [DataMember(Name = "expires_in")]
         public String ExpiresIn { get; set; }
-
-        [DataMember(Name ="email")]
-        public String Email { get; set; }
     }
 }

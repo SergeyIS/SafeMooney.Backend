@@ -7,14 +7,24 @@ using System.Web.Http;
 using safemooneyBackend.Models;
 using safemooneyBackend.Security.Filters;
 using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 using DataAccessLibrary;
+using NLog;
 
 namespace safemooneyBackend.Controllers
 {
     [AuthFilter]
     public class TransactionsController : ApiController
     {
-        IDataAccess db = new DataBuilder();
+        private Logger logger = null;
+        IDataAccess db = null;
+
+        public TransactionsController()
+        {
+            //todo: dependency injection
+            logger = LogManager.GetCurrentClassLogger();
+            db = new DataBuilder();
+        }
 
         /// <summary>
         /// This method reterns users who are friends of user with userId
@@ -36,7 +46,10 @@ namespace safemooneyBackend.Controllers
                 LastName = u.LastName,
                 Username = u.Username
             });
-            
+
+            //write log
+            logger.Info($"user {userId} request userlist|response count: {userList.Count()}");
+
             return Request.CreateResponse(HttpStatusCode.OK, userList);
         }
 
@@ -90,6 +103,9 @@ namespace safemooneyBackend.Controllers
 
             }
 
+            //write log
+            logger.Info($"user {userId} request userlist|response count: {userList.Count()}");
+
             return Request.CreateResponse(HttpStatusCode.OK, userList);
         }
 
@@ -114,7 +130,7 @@ namespace safemooneyBackend.Controllers
                     User1Id = userId,
                     User2Id = trans.userId,
                     Count = trans.count,
-                    Date = DateTime.Now,
+                    Date = DateTime.Parse(trans.date),
                     Period = trans.period,
                     IsPermited = false,
                     IsClosed = false,
@@ -123,10 +139,16 @@ namespace safemooneyBackend.Controllers
 
                 db.AddTransaction(transactionObj);
 
+                //write log
+                logger.Info($"user {userId} added transaction");
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch(Exception e)
             {
+                //write log
+                logger.Error($"An error was encountered while adding a transaction|user_id: {userId}");
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
         }
@@ -192,6 +214,9 @@ namespace safemooneyBackend.Controllers
             }
             catch(Exception e)
             {
+                //write log
+                logger.Error($"An error was encountered while confirming a transaction|user_id: {userId}", e.Message);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
 
@@ -222,6 +247,9 @@ namespace safemooneyBackend.Controllers
             }
             catch(Exception e)
             {
+                //write log
+                logger.Error($"An error was encountered while closing a transaction|user_id: {userId}", e.Message);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
         }
@@ -258,7 +286,8 @@ namespace safemooneyBackend.Controllers
                         UserId = user.Id,
                         Username = user.Username,
                         FirstName = user.FirstName,
-                        LastName = user.LastName                        
+                        LastName = user.LastName,
+                        PhotoUri = $"http://{Request.RequestUri.Host}:{Request.RequestUri.Port}/api/getimg/{userId}.jpg"                        
                     }
                 });
             }

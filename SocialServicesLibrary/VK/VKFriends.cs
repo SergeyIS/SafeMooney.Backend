@@ -14,7 +14,7 @@ namespace SocialServicesLibrary.VkApi
             if (String.IsNullOrEmpty(authId) || String.IsNullOrEmpty(accessToken) || String.IsNullOrEmpty(query))
                 throw new ArgumentNullException();
 
-            String url = $"https://api.vk.com/method/friends.search?user_id={authId}&q={query}&access_token={accessToken}&v=5.68";
+            String url = $"https://api.vk.com/method/friends.search?user_id={authId}&q={query}&fields=photo_50&access_token={accessToken}&v=5.68";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try

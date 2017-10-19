@@ -7,6 +7,7 @@ using System.Web.Http.Results;
 using System.Security.Principal;
 using DataAccessLibrary;
 using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 
 namespace safemooneyBackend.Security.Filters
 {

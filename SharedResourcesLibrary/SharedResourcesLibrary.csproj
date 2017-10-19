@@ -42,12 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthProvider.cs" />
-    <Compile Include="AuthService.cs" />
+    <Compile Include="Models\AuthProvider.cs" />
+    <Compile Include="Models\AuthService.cs" />
+    <Compile Include="IDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserImage.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 
 namespace DataAccessLibrary
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SharedResourcesLibrary;
+using SharedResourcesLibrary.Models;
 
-namespace DataAccessLibrary
+namespace SharedResourcesLibrary
 {
     public interface IDataAccess
     {
@@ -30,8 +30,8 @@ namespace DataAccessLibrary
         List<Transaction> FetchTransactions(int userId);
         bool SetTokenForUser(int userId, String token);
         bool ChangeUserInfo(User user);
-        bool SetImage(int userId, byte[] bytes);
-        byte[] GetImage(int userId);
+        bool SetImage(UserImage img);
+        UserImage GetImage(int userId);
         List<User> GetUsers(String fname, String lname);
         List<User> GetUsers(String username);
     }
