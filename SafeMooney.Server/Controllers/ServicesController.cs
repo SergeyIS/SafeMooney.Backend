@@ -20,10 +20,10 @@ namespace SafeMooney.Server.Controllers
     {
         private IDataStorage _db = null;
         private Logger _logger = null;
-        public ServicesController(IDataStorage database)
+        public ServicesController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            _db = database;
+            _db = (IDataStorage)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IDataStorage));
         }
 
         /// <summary>
