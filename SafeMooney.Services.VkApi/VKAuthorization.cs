@@ -8,9 +8,9 @@ namespace SafeMooney.Services.VkApi
 {
     public class VKAuthorization
     {
-        private static AuthorizeConfigurator _configurator;
+        private static AuthorizeConfiguration _configurator;
 
-        public static void Configure(AuthorizeConfigurator configurator)
+        public static void Configure(AuthorizeConfiguration configurator)
         {
             if (configurator == null)
                 throw new ArgumentNullException("configurator can't be NULL");

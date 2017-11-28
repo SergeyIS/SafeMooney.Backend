@@ -12,6 +12,7 @@ using SafeMooney.Server.Models;
 using SafeMooney.Server.Security.Filters;
 using SafeMooney.Services.Email;
 using SafeMooney.Services.Email.Models;
+using SafeMooney.Server.Infrastructure.Dependencies;
 using NLog;
 
 namespace SafeMooney.Server.Controllers
@@ -23,7 +24,7 @@ namespace SafeMooney.Server.Controllers
         public ServicesController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            _db = (IDataStorage)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IDataStorage));
+            _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
         }
 
         /// <summary>

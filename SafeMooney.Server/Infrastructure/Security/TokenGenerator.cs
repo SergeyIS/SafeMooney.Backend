@@ -13,7 +13,7 @@ namespace SafeMooney.Server.Security.Util
 
         public TokenGenerator(String username, String password)
         {
-            if (_username == null || _password == null)
+            if (username == null || password == null)
                 throw new ArgumentNullException("It's not allowed to use this method without setting username and password parameters");
 
             this._username = username;

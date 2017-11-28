@@ -9,7 +9,9 @@ using SafeMooney.Server.Infrastructure.CustomControllers;
 using SafeMooney.Server.Security.Filters;
 using SafeMooney.Shared;
 using SafeMooney.Shared.Models;
+using SafeMooney.Server.Infrastructure.Dependencies;
 using NLog;
+using System.Web.Http.Results;
 
 namespace SafeMooney.Server.Controllers
 {
@@ -21,7 +23,7 @@ namespace SafeMooney.Server.Controllers
         public AccountController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            _db = (IDataStorage)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IDataStorage));
+            _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
         }
         /// <summary>
          /// This method provide access to resources  for user
@@ -260,7 +262,7 @@ namespace SafeMooney.Server.Controllers
             catch(Exception e)
             {
                 _logger.Error("Cannot get user {userId} image", e);
-                return (IHttpActionResult)Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+                return this.InternalServerError();
             }
         }
 

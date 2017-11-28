@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace SafeMooney.Services.VkApi
 {
-    public class AuthorizeConfigurator : ConfigurationSection 
+    public class AuthorizeConfiguration : ConfigurationSection 
     {
         [ConfigurationProperty("authorizationUri", IsRequired = true)]
         public String AuthorizationURI

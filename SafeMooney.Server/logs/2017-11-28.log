@@ -1,2 +1,56 @@
 2017-11-28 14:35:51.6583 | INFO | SafeMooney.Server.WebApiApplication | Application Start
 2017-11-28 14:35:56.8766 | FATAL | SafeMooney.Server.WebApiApplication | Application start error
+2017-11-28 15:21:51.0281 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:21:53.6592 | FATAL | SafeMooney.Server.WebApiApplication | Application start error
+2017-11-28 15:27:44.4443 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:27:58.5151 | FATAL | SafeMooney.Server.WebApiApplication | Application start error
+2017-11-28 15:31:12.1392 | ERROR | SafeMooney.Server.Controllers.AccountController | An error was occured: Значение не может быть неопределенным.
+Имя параметра: It's not allowed to use this method without setting username and password parameters
+2017-11-28 15:31:23.3058 | ERROR | SafeMooney.Server.Controllers.AccountController | An error was occured: Значение не может быть неопределенным.
+Имя параметра: It's not allowed to use this method without setting username and password parameters
+2017-11-28 15:31:43.5860 | ERROR | SafeMooney.Server.Controllers.AccountController | An error was occured: Значение не может быть неопределенным.
+Имя параметра: It's not allowed to use this method without setting username and password parameters
+2017-11-28 15:32:06.5713 | ERROR | SafeMooney.Server.Controllers.AccountController | An error was occured: Значение не может быть неопределенным.
+Имя параметра: It's not allowed to use this method without setting username and password parameters
+2017-11-28 15:33:53.6254 | ERROR | SafeMooney.Server.Controllers.AccountController | An error was occured: Значение не может быть неопределенным.
+Имя параметра: It's not allowed to use this method without setting username and password parameters
+2017-11-28 15:35:04.1654 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:35:05.4665 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:36:33.8036 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:36:34.8696 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:37:01.8632 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:37:02.5312 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:37:53.7831 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:39:08.8664 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:41:15.4407 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:41:16.8528 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:42:43.6177 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:42:45.0818 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:47:12.6261 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:47:39.7177 | ERROR | SafeMooney.Server.Security.Filters.AuthFilterAttribute | An error was occured while authorization proccess
+2017-11-28 15:49:20.2624 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:49:23.9666 | FATAL | SafeMooney.Server.WebApiApplication | Application start error
+2017-11-28 15:49:27.4288 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:52:08.6530 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:52:11.8552 | FATAL | SafeMooney.Server.WebApiApplication | Application start error
+2017-11-28 15:52:28.0051 | INFO | SafeMooney.Server.Controllers.AccountController | User <_username: SergeyIS> is authorized
+2017-11-28 15:54:47.3041 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:56:59.7977 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:57:25.1451 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 15:58:04.1924 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:14:03.8853 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:24:37.4065 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:37:27.1575 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:39:41.7282 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:41:39.7530 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:42:39.7134 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:44:52.4740 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:49:55.3293 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:50:29.4893 | ERROR | SafeMooney.Server.Controllers.AccountController | Cannot get user {userId} image
+2017-11-28 16:55:36.3948 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 16:57:06.1350 | ERROR | SafeMooney.Server.Controllers.AccountController | Cannot get user {userId} image
+2017-11-28 16:57:20.1048 | ERROR | SafeMooney.Server.Controllers.AccountController | Cannot get user {userId} image
+2017-11-28 16:58:31.6529 | INFO | SafeMooney.Server.WebApiApplication | Application Start
+2017-11-28 17:00:06.9423 | INFO | SafeMooney.Server.Controllers.TransactionsController | user 8 request userlist|response count: 0
+2017-11-28 17:00:09.2784 | INFO | SafeMooney.Server.Controllers.TransactionsController | user 8 request userlist|response count: 0
+2017-11-28 17:00:25.8944 | INFO | SafeMooney.Server.Controllers.TransactionsController | user 8 added transaction

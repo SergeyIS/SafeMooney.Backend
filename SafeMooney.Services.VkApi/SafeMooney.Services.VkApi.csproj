@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorizeConfigurator.cs" />
+    <Compile Include="AuthorizeConfiguration.cs" />
     <Compile Include="Models\VKAuthorizationResponseModel.cs" />
     <Compile Include="Models\VKFriendListModel.cs" />
     <Compile Include="Models\VKFriendsResponseModel.cs" />

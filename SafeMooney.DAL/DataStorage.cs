@@ -604,7 +604,7 @@ namespace SafeMooney.DAL
                 using (db = new DataContext())
                 {
                     var query = db.UserImages.Where(i => i.UserId == userId);
-                    if (query == null)
+                    if (query == null || query.Count() == 0)
                         return null;
 
                     return query.First();

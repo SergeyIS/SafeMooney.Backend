@@ -27,17 +27,13 @@ namespace SafeMooney.Server
                 if (_logger != null)
                     _logger.Info("Application Start");
                 
-                //configurate of Routes
+                //configurate of Routes and IoC container
                 GlobalConfiguration.Configure(WebApiConfig.Register);
 
-                //configurate of ninject IoC container
-                var kernel = new StandardKernel(new NinjectBindingConfig());
-                DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
-
                 //configurate of social services
-                var authConfigurator = (AuthorizeConfigurator)ConfigurationManager.GetSection("athorizeConfigurator");
+                var authConfigurator = (AuthorizeConfiguration)ConfigurationManager.GetSection("athorizeConfiguration");
                 VKAuthorization.Configure(authConfigurator);
-                var emailConfigurator = (EmailConfiguration)ConfigurationManager.GetSection("emailConfigurator");
+                var emailConfigurator = (EmailConfiguration)ConfigurationManager.GetSection("emailConfiguration");
                 EmailSender.Configure(emailConfigurator);
 
                 //set template file in cache

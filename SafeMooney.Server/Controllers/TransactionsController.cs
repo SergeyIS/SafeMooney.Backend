@@ -8,6 +8,7 @@ using SafeMooney.Shared;
 using SafeMooney.Shared.Models;
 using SafeMooney.Server.Models;
 using SafeMooney.Server.Security.Filters;
+using SafeMooney.Server.Infrastructure.Dependencies;
 using NLog;
 
 namespace SafeMooney.Server.Controllers
@@ -21,7 +22,7 @@ namespace SafeMooney.Server.Controllers
         public TransactionsController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            _db = (IDataStorage)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IDataStorage));
+            _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
         }
 
         /// <summary>

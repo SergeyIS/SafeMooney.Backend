@@ -7,7 +7,7 @@ using System.Web.Http.Results;
 using System.Security.Principal;
 using SafeMooney.Shared;
 using SafeMooney.Shared.Models;
-using System.Web.Mvc;
+using SafeMooney.Server.Infrastructure.Dependencies;
 using NLog;
 
 namespace SafeMooney.Server.Security.Filters
@@ -19,7 +19,7 @@ namespace SafeMooney.Server.Security.Filters
 
         public AuthFilterAttribute()
         {
-            _db = DependencyResolver.Current.GetService<IDataStorage>();
+            _db = (IDataStorage) DependencyContainer.GetService(typeof(IDataStorage));          
             _logger = LogManager.GetCurrentClassLogger();
         }
 
