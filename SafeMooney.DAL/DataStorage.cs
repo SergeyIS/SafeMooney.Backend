@@ -36,9 +36,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -70,9 +70,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -108,9 +108,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -151,9 +151,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -187,9 +187,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -236,9 +236,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -262,9 +262,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -293,7 +293,7 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
                     throw new Exception("An error was occured. Cannot close db connection", e);
                 }
@@ -325,9 +325,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -367,7 +367,7 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
                     throw new Exception("An error was occured. Cannot close db connection", e);
                 }
@@ -411,9 +411,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -451,9 +451,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -482,9 +482,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -521,9 +521,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -550,9 +550,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -587,9 +587,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -617,7 +617,7 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
                     throw new Exception("An error was occured. Cannot close db connection", e);
                 }
@@ -669,9 +669,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("Cannot close db connection", ine);
+                    throw new Exception("Cannot close db connection", e);
                 }
 
                 throw;
@@ -699,9 +699,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -736,9 +736,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -768,9 +768,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -800,9 +800,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occurd. Cannot close db connection", ine);
+                    throw new Exception("An error was occurd. Cannot close db connection", e);
                 }
 
                 throw;
@@ -837,9 +837,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
@@ -874,9 +874,9 @@ namespace SafeMooney.DAL
                     if (db != null)
                         db.Database.Connection.Close();
                 }
-                catch (Exception ine)
+                catch 
                 {
-                    throw new Exception("An error was occured. Cannot close db connection", ine);
+                    throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
                 throw;
