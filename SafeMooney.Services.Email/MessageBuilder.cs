@@ -31,6 +31,7 @@ namespace SafeMooney.Services.Email
 
             using (StringWriter writer = new StringWriter())
             {
+                //REVIEW: А тут exception не вылетит?
                 Velocity.Evaluate(context, writer, String.Empty, _context.TemplateFile);
                 emailMessage = writer.ToString();
             }

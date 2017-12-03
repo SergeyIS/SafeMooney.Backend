@@ -22,9 +22,10 @@ namespace SafeMooney.Services.VkApi
         {
             if (_configurator == null)
                 throw new Exception("configuration is not found");
-
+            //REVIEW: Собирать URI лучше с помощью специального класса - там и проверка сразу
             String url = $"{_configurator.AuthorizationURI}?client_id={_configurator.ClientId}&client_secret={_configurator.ClientSecret}&redirect_uri={_configurator.RedirectUri}&code={code}";
 
+            //REVIEW: WebRequest и WebResponse реализуют IDisposable
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try
             {

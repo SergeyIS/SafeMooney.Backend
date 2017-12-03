@@ -3,6 +3,8 @@ using System.Text;
 
 namespace SafeMooney.Server.Security.Util.Cryptography
 {
+    //REVIEW: А чем стандартный не угодил?
+
     public class SHA1CryptoAlgorithm : ICryptoAlgorithm
     {
         public string GetHashString(string value)

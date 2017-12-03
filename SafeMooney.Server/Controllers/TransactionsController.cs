@@ -22,6 +22,7 @@ namespace SafeMooney.Server.Controllers
         public TransactionsController()
         {
             _logger = LogManager.GetCurrentClassLogger();
+            //REVIEW: Исключения?
             _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
         }
 

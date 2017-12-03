@@ -15,7 +15,7 @@ namespace SafeMooney.Services.VkApi
                 throw new ArgumentNullException();
 
             String url = $"https://api.vk.com/method/friends.search?user_id={authId}&q={query}&fields=photo_50&access_token={accessToken}&v=5.68";
-
+            //REVIEW: WebRequest и WebResponse реализуют IDisposable
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
@@ -31,6 +31,7 @@ namespace SafeMooney.Services.VkApi
             }
             catch (Exception e)
             {
+                //REVIEW: лог? 
                 return null;
             }
         }

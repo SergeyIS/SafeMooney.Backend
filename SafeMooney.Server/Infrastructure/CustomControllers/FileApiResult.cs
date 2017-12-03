@@ -20,6 +20,8 @@ namespace SafeMooney.Server.Infrastructure.CustomControllers
 
         public string DispositionType { get; set; }
 
+
+//REVIEW: Проверить на исключения
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var result =

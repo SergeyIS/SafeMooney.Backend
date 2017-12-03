@@ -25,6 +25,7 @@ namespace SafeMooney.Services.VkApi
                 throw new Exception("_accessToken is NULL");
 
             String url = $"https://api.vk.com/method/users.get?user_ids={userId}&access_token={_accessToken}&v=5.68";
+            //REVIEW: WebRequest и WebResponse реализуют IDisposable ;)
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
@@ -43,6 +44,7 @@ namespace SafeMooney.Services.VkApi
             }
             catch (Exception e)
             {
+                //REVIEW: В лог бы что-нибудь черкануть
                 return null;
             }
         }

@@ -12,6 +12,7 @@ namespace SafeMooney.Server.Infrastructure.CustomControllers
     {
         private Stream _bitmap;
         private int _contentLength;
+        //REVIEW:Кандидат на константу :)
         private static String _contentType = "image/jpeg";
 
         public ImageApiResult(UserImage img)
@@ -32,6 +33,7 @@ namespace SafeMooney.Server.Infrastructure.CustomControllers
             result.Content.Headers.ContentLength = _contentLength;
             result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue(System.Net.Mime.DispositionTypeNames.Inline);
 
+            //REVIEW: Проверить бы на исключения
             return Task.FromResult<HttpResponseMessage>(result);
         }
     }

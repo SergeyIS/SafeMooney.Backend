@@ -3,6 +3,7 @@ using System.Text;
 
 namespace SafeMooney.Server.Security.Util.Cryptography
 {
+    //REVIEW: Выжечь напалмом. MD5 не нужен
     public class MD5CryptoAlgorithm : ICryptoAlgorithm
     {
         public string GetHashString(string value)
