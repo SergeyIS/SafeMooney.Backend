@@ -22,25 +22,32 @@ namespace SafeMooney.Services.VkApi
         {
             if (_configurator == null)
                 throw new Exception("configuration is not found");
-            //REVIEW: Собирать URI лучше с помощью специального класса - там и проверка сразу
-            String url = $"{_configurator.AuthorizationURI}?client_id={_configurator.ClientId}&client_secret={_configurator.ClientSecret}&redirect_uri={_configurator.RedirectUri}&code={code}";
+           
+            String urlString = $"{_configurator.AuthorizationURI}?client_id={_configurator.ClientId}&client_secret={_configurator.ClientSecret}&redirect_uri={_configurator.RedirectUri}&code={code}";
+            Stream outstr = null;
 
-            //REVIEW: WebRequest и WebResponse реализуют IDisposable
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                using (Stream stream = response.GetResponseStream())
+                using (outstr = WebClient.ConnectTo(new Uri(urlString)))
                 {
                     DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(VKAuthorizationResponseModel));
-                    VKAuthorizationResponseModel authorizationResponse = (VKAuthorizationResponseModel)jsonFormatter.ReadObject(stream);
+                    VKAuthorizationResponseModel authorizationResponse = (VKAuthorizationResponseModel)jsonFormatter.ReadObject(outstr);
                     return authorizationResponse;
                 }
             }
             catch (Exception e)
             {
-                return null;
+                try
+                {
+                    if (outstr != null)
+                        outstr.Close();
+                }
+                catch
+                {
+                    throw new Exception("Cannot close output stream", e);
+                }
+
+                throw;
             }
         }
     }

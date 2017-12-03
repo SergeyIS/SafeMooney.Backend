@@ -1,7 +1,5 @@
 ﻿using System;
 using SafeMooney.Services.VkApi.Models;
-using System.Net;
-using System.Runtime.Serialization.Json;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -14,25 +12,30 @@ namespace SafeMooney.Services.VkApi
             if (String.IsNullOrEmpty(authId) || String.IsNullOrEmpty(accessToken) || String.IsNullOrEmpty(query))
                 throw new ArgumentNullException();
 
-            String url = $"https://api.vk.com/method/friends.search?user_id={authId}&q={query}&fields=photo_50&access_token={accessToken}&v=5.68";
-            //REVIEW: WebRequest и WebResponse реализуют IDisposable
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            String urlString = $"https://api.vk.com/method/friends.search?user_id={authId}&q={query}&fields=photo_50&access_token={accessToken}&v=5.68";
+            Stream outstr = null;
+            
             try
             {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                using (Stream stream = response.GetResponseStream())
+                using (outstr = WebClient.ConnectTo(new Uri(urlString)))
                 {
-                    //DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(VKFriendsResponseModel));
-
-                    VKFriendsResponseModel friendsResponse = (VKFriendsResponseModel)DeserializeFromStream<VKFriendsResponseModel>(stream);
+                    VKFriendsResponseModel friendsResponse = (VKFriendsResponseModel)DeserializeFromStream<VKFriendsResponseModel>(outstr);
                     return friendsResponse;
                 }
             }
             catch (Exception e)
             {
-                //REVIEW: лог? 
-                return null;
+                try
+                {
+                    if (outstr != null)
+                        outstr.Close();
+                }
+                catch
+                {
+                    throw new Exception("Cannot close output stream", e);
+                }
+
+                throw;
             }
         }
 

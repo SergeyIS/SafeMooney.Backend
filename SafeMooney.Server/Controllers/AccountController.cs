@@ -23,8 +23,15 @@ namespace SafeMooney.Server.Controllers
         public AccountController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            //REVIEW:Исключения?
-            _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
+
+            try
+            {   
+                _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
+            }
+            catch
+            {
+                _logger.Error("Cannot get database instance from IoC container");
+            }          
         }
         /// <summary>
          /// This method provide access to resources  for user
@@ -40,6 +47,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/account/login")]
         public HttpResponseMessage LogIn(UserRequestModel user)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             try
             {
                 if (user == null || !user.IsValidOnSignIn())
@@ -88,6 +98,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/account/logout")]
         public HttpResponseMessage LogOut(int userId = -1)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             bool resultOfOperation = default(bool);
 
             try
@@ -117,6 +130,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/account/signup")]
         public HttpResponseMessage SignUp(UserRequestModel user)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (user == null || !user.IsValideOnSignUp())
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -149,6 +165,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/account/changeuserinfo")]
         public HttpResponseMessage ChangeUserInfo([FromBody]UserRequestModel user, int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (user == null || !user.IsValidOnChangeIngo() || userId < 0)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -196,6 +215,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/account/changepass")]
         public HttpResponseMessage ChangePass([FromBody]ChangePasswordRequestModel userCredential, int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userCredential == null || !userCredential.IsValid())
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
@@ -239,6 +261,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/getimg/{filename}")]
         public IHttpActionResult GetImg(String filename)
         {
+            if (_db == null)
+                return this.InternalServerError();
+
             String[] filenameSplitted = null;
             int userId = 0;
 
@@ -271,6 +296,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/setimg")]
         public HttpResponseMessage SetImg(int userId, [FromUri]String filename)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             var httpRequest = HttpContext.Current.Request;
 
             if (httpRequest.Files.Count == 0 || String.IsNullOrEmpty(filename))

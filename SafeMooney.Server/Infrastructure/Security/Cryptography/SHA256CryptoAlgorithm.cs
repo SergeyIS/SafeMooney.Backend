@@ -3,13 +3,12 @@ using System.Text;
 
 namespace SafeMooney.Server.Security.Util.Cryptography
 {
-    //REVIEW: Выжечь напалмом. MD5 не нужен
-    public class MD5CryptoAlgorithm : ICryptoAlgorithm
+    public class SHA256CryptoAlgorithm : ICryptoAlgorithm
     {
         public string GetHashString(string value)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(value);
-            MD5CryptoServiceProvider cipher = new MD5CryptoServiceProvider();
+            SHA256CryptoServiceProvider cipher = new SHA256CryptoServiceProvider();
             byte[] byteHash = cipher.ComputeHash(bytes);
             string hash = string.Empty;
             foreach (byte b in byteHash)

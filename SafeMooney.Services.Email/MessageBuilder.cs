@@ -21,9 +21,6 @@ namespace SafeMooney.Services.Email
         }
         public String GetMessage()
         {
-            if (_context == null)
-                throw new ArgumentNullException("email context has NULL");
-
             String emailMessage = null;
             Velocity.Init();
             VelocityContext context = new VelocityContext();
@@ -31,9 +28,16 @@ namespace SafeMooney.Services.Email
 
             using (StringWriter writer = new StringWriter())
             {
-                //REVIEW: А тут exception не вылетит?
-                Velocity.Evaluate(context, writer, String.Empty, _context.TemplateFile);
-                emailMessage = writer.ToString();
+                try
+                {
+                    Velocity.Evaluate(context, writer, String.Empty, _context.TemplateFile);
+                    emailMessage = writer.ToString();
+                }
+                catch(Exception e)
+                {
+                    writer.Close();
+                    throw;
+                }       
             }
 
             return emailMessage;

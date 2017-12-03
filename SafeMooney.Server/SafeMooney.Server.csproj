@@ -205,7 +205,7 @@
     <Compile Include="Infrastructure\Dependencies\NinjectWrapper.cs" />
     <Compile Include="Infrastructure\Security\AuthFilterAttribute.cs" />
     <Compile Include="Infrastructure\Security\Cryptography\ICryptoAlgorithm.cs" />
-    <Compile Include="Infrastructure\Security\Cryptography\MD5CryptoAlgorithm.cs" />
+    <Compile Include="Infrastructure\Security\Cryptography\SHA256CryptoAlgorithm.cs" />
     <Compile Include="Infrastructure\Security\Cryptography\SHA1CryptoAlgorithm.cs" />
     <Compile Include="Infrastructure\Security\TokenGenerator.cs" />
     <Compile Include="Infrastructure\Security\Cryptography\CryptoService.cs" />

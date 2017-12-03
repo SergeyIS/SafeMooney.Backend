@@ -22,8 +22,15 @@ namespace SafeMooney.Server.Controllers
         public TransactionsController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            //REVIEW: Исключения?
-            _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
+
+            try
+            {
+                _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
+            }
+            catch
+            {
+                _logger.Error("Cannot get database instance from IoC container");
+            }
         }
 
         /// <summary>
@@ -35,6 +42,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/getuserlist")]
         public HttpResponseMessage GetUserList(int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             //todo: retern users who are friends of user with userId
@@ -67,6 +77,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/getuserlist")]
         public HttpResponseMessage GetUserList(int userId, [FromUri]String search)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             //todo: Implement logic of working with search parametr. It's necessary to get fname, lname or _username from search
             if (search == null || String.IsNullOrEmpty(search) || search.Length > 50)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -138,8 +151,10 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/add")]
         public HttpResponseMessage Add([FromBody]TransactionRequestModel trans, int userId)
         {
- 
-            if(userId < 0 || trans == null || !trans.IsValid())
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
+            if (userId < 0 || trans == null || !trans.IsValid())
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             try
@@ -181,6 +196,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/checkqueue")]
         public HttpResponseMessage CheckQueue(int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
@@ -241,6 +259,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/confirm/{transId}")]
         public HttpResponseMessage Confirm(int userId, int transId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userId < 0 || transId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
           
@@ -273,6 +294,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/close/{transId}")]
         public HttpResponseMessage Close(int transId, int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userId < 0 || transId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             try
@@ -302,6 +326,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/transactions/fetch")]
         public HttpResponseMessage Fetch(int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 

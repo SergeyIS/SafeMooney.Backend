@@ -56,6 +56,7 @@
     <Compile Include="VKAuthorization.cs" />
     <Compile Include="VKFriends.cs" />
     <Compile Include="VKUsers.cs" />
+    <Compile Include="WebClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

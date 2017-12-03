@@ -41,7 +41,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e; //REVIEW: Если так делать - потеряете StackTrace от e. Лучше просто throw;
+                throw;
             }
         }
 
@@ -75,7 +75,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -113,7 +113,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -156,7 +156,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -192,7 +192,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -241,7 +241,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -267,7 +267,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -298,7 +298,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -330,7 +330,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -372,7 +372,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -416,7 +416,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -456,7 +456,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -487,7 +487,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -526,7 +526,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -555,7 +555,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -592,7 +592,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -622,7 +622,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", e);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -674,7 +674,7 @@ namespace SafeMooney.DAL
                     throw new Exception("Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -704,7 +704,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -741,7 +741,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -773,7 +773,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -805,7 +805,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occurd. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -842,7 +842,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
 
@@ -879,7 +879,7 @@ namespace SafeMooney.DAL
                     throw new Exception("An error was occured. Cannot close db connection", ine);
                 }
 
-                throw e;
+                throw;
             }
         }
     }

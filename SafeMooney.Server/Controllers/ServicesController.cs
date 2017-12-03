@@ -24,7 +24,15 @@ namespace SafeMooney.Server.Controllers
         public ServicesController()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
+
+            try
+            {
+                _db = (IDataStorage)DependencyContainer.GetService(typeof(IDataStorage));
+            }
+            catch
+            {
+                _logger.Error("Cannot get database instance from IoC container");
+            }
         }
 
         /// <summary>
@@ -37,6 +45,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/services/vk/addservice")]
         public HttpResponseMessage AddService(String code, int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (String.IsNullOrEmpty(code) || userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
@@ -101,6 +112,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/services/vk/search")]
         public HttpResponseMessage Search(String query, int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (String.IsNullOrEmpty(query) || query.Length > 50 || userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
@@ -198,6 +212,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/services/vk/check")]
         public HttpResponseMessage Check(int userId)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             if (userId < 0)
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
@@ -223,6 +240,9 @@ namespace SafeMooney.Server.Controllers
         [Route("api/{userId}/services/email/sendinvent")]
         public HttpResponseMessage SendInvention(int userId, [FromUri]String email, [FromUri]String signup_url)
         {
+            if (_db == null)
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             try
             {
                 StreamReader messageTemplateFile = (StreamReader)MessageBuilder.GetMessageTemplate("emailTemplate");
