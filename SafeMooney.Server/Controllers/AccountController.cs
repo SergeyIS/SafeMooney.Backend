@@ -11,7 +11,6 @@ using SafeMooney.Shared;
 using SafeMooney.Shared.Models;
 using SafeMooney.Server.Infrastructure.Dependencies;
 using NLog;
-using System.Web.Http.Results;
 
 namespace SafeMooney.Server.Controllers
 {
@@ -65,14 +64,18 @@ namespace SafeMooney.Server.Controllers
                     return new HttpResponseMessage(HttpStatusCode.Unauthorized);
                 }
 
-                TokenGenerator tgen = new TokenGenerator(user.Username, user.Password);
-                string token = tgen.GenerateKey();
+                //check for available token
+                var token = _db.GetTokenForUser(localUser.Id);
 
-                //save changes to _db
-                bool resultOfOperation = _db.SetTokenForUser(localUser.Id, token);
+                if (String.IsNullOrEmpty(token))
+                {
+                    //set new token
+                    TokenGenerator tgen = new TokenGenerator(user.Username, user.Password);
+                    token = tgen.GenerateKey();
 
-                if (!resultOfOperation)
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                    if (_db.SetTokenForUser(localUser.Id, token))
+                        return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                }
 
                 TokenResponseModel response = new TokenResponseModel();
                 response.UserId = localUser.Id;
