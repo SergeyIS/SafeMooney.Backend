@@ -530,6 +530,42 @@ namespace SafeMooney.DAL
             }
         }
 
+        public String GetTokenForUser(int userId)
+        {
+            DataContext db = null;
+            String result;
+            try
+            {
+                using (db = new DataContext())
+                {
+                    var query = db.Users.Where(u => u.Id == userId);
+                    if (query.Count() == 0)
+                        result = null;
+
+                    if (query.Count() > 1)
+                        throw new Exception("More than one user was found");
+
+                    result = query.First().TokenKey;
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    if (db != null)
+                        db.Database.Connection.Close();
+                }
+                catch (Exception ine)
+                {
+                    throw new Exception("An error was occured. Cannot close db connection", e);
+                }
+
+                throw;
+            }
+        }
+
         public bool ChangeUserInfo(User user)
         {
             DataContext db = null;

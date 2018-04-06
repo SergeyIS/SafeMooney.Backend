@@ -29,6 +29,7 @@ namespace SafeMooney.Shared
         bool RemoveUser(int userId, ref String token);
         List<Transaction> FetchTransactions(int userId);
         bool SetTokenForUser(int userId, String token);
+        String GetTokenForUser(int userId);
         bool ChangeUserInfo(User user);
         bool SetImage(UserImage img);
         UserImage GetImage(int userId);
