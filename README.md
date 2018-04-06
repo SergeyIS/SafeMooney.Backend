@@ -1,387 +1,340 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-<body lang="ru-RU" link="#0000ff" dir="ltr">
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">************************************************************</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><a name="_GoBack"></a>
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>SafeMoney
-REST API</b></span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">************************************************************</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">SafeMoney
-is built in REST API architecture style. </span></font></font>
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Example:
-<a href="http://safemooney.azurewebsites/%7Bmethod%7D">http://safemooney.azurewebsites/{method}</a></span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">For
-communication with server use HTTP protocol<a class="sdfootnoteanc" name="sdfootnote1anc" href="#sdfootnote1sym"><sup>1</sup></a>.</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Methods:</span></font></font></p>
-<p align="right" style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>Part
-I. Account</b></span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/account/login</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-This method provides access to service for user</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[POST] api/account/login</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;UserId&quot;:&quot;value&quot;,
-&quot;Username&quot;:&quot;value&quot;,
-&quot;Password&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[POST] api/account/login</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;UserId&quot;:&quot;value&quot;,
-&quot;Username&quot;:&quot;value&quot;, FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;, &quot;Access_Token&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+## SafeMoney REST API
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/account/logout</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-logging out</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/account/logout</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/account/logout</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(only status code)</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+SafeMoney is web-based platform for sharing and controlling your money with support of social services.
 
-</p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+This's documentation for developers who wants to use SafeMoney API in their applications.
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*</span></font></font><span lang="en-US">
-</span><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">api/account/signup</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-This method register user in the system</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[POST] api/account/signup </span></font></font>
-</p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;Username&quot;:&quot;value&quot;,
-&quot;Password&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[POST] api/account/signup</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(only status code)</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/account/changeuserinfo</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Change user first name, last name and username</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[POST] api/{userId}/account/logout </span></font></font>
-</p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;Username&quot;:&quot;value&quot;,
-FirstName&quot;:&quot;value&quot;, &quot;LastName&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[POST] api/{userId}/account/logout</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;UserId&quot;:&quot;value&quot;,
-&quot;Username&quot;:&quot;value&quot;, FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/account/changepass</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Change user password</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[POST] api/{userId}/account/logout </span></font></font>
-</p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;OldPassword&quot;:&quot;value&quot;,
-NewPassword&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[POST] api/{userId}/account/changepass</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(or error message)</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/getimg/{filename}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Return user image or default image</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/getimg/{filename} (</span></font></font><font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">filename:
-&quot;{userid}.jpg&quot;</span></font></font></font><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">)</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/getimg/{filename}</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">raw
-data (bytes of image)</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*
-api/{userId}/setimg?filename={userid}.jpg</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Set image for user</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[POST] api/{userId}/setimg </span></font></font>
-</p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">raw
-data (bytes of image)</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[POST] api/{userId}/setimg</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(or error message)</span></font></font></font></p>
-<p align="right" style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>Part
-II. Services</b></span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/services/vk/addservice?code={value}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Add vk.com service for user into services list. Code is parameter
-returned from vk.com on authorization process</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/services/vk/addservice</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/services/vk/addservice</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(or error message)</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+## Overview
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/services/vk/search?query={value}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Search people from user&rsquo;s vk.com friends list</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/services/vk/search</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/services/vk/search</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">[{&quot;UserId&quot;:&quot;value&quot;,
-&quot;Username&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;, &quot;Availability&quot;:&quot;value&quot;,
-&quot;AuthorizationId&quot;:&quot;value&quot;, &quot;PhotoUri&quot;:&quot;value&quot;},
-{&hellip;}, &hellip;]</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+SafeMoney is built in REST API architecture style.
 
-</p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+![Main page of application](https://raw.githubusercontent.com/SergeyIS/Storage/master/SafeMooney/laptop-mpage.png)
 
-</p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/services/vk/check</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Check for availability of vk.com account</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/services/vk/check</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/services/vk/check</span></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;true&quot;/&quot;false&quot;
-or error message</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+Example of request:  http://{domain}/{methodName}/{params}
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/services/email/sendinvent?email={value}&amp;signup_url={value}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Send email invitation to join SafeMoney. Email parameter    is
-email:) signup_url is url to signup page or app store link</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/services/email/sendinvent</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/services/email/sendinvent</span></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(or error message)</span></font></font></font></p>
-<p align="right" style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>Part
-III. Transactions</b></span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/getuserlist</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Return full friend list for user</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/transactions/getuserlist</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/transactions/getuserlist</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">[{&quot;UserId&quot;:&quot;value&quot;,
-&quot;Username&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;}, {&hellip;}, &hellip;]</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/getuserlist?search={value}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Return result of searching.</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/transactions/getuserlist</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/transactions/getuserlist</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">[{&quot;UserId&quot;:&quot;value&quot;,
-&quot;Username&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,
-&quot;LastName&quot;:&quot;value&quot;}, {&hellip;}, &hellip;]</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+For communication with server use HTTP protocol. (For more information use [google](https://www.google.com))
 
-</p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+> List of available domains:
+>  - safemooney.azurewebsites.net
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/add</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Add new not permitted transaction</span></font></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[POST] api/{userId}/transactions/add</span></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Body:</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">{&quot;userId&quot;:&quot;value&quot;,
-&quot;count&quot;:&quot;value&quot;, &quot;date&quot;:&quot;value&quot;,
-&quot;period&quot;:&quot;value&quot;, &quot;comment&quot;:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[PSOT] api/{userId}/transactions/add</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">Empty
-(or error message)</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/checkqueue</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Check transactions table and retern not permited for this user</span></font></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/transactions/checkqueue</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/transactions/checkqueue</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">[{</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;transactionData&quot;:{</span></font></font></font></p>
-<p style="margin-left: 0.98in; text-indent: 0in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;Id&quot;:&quot;value&quot;,&quot;User1Id&quot;:&quot;value&quot;,&quot;User2Id&quot;:&quot;value&quot;,&quot;Count&quot;:&quot;value&quot;,
-&quot;Date&quot;:&quot;value&quot;, &quot;Period&quot;:&quot;value&quot;,
-&quot;IsPermited&quot;:&quot;value&quot;, &quot;IsClosed&quot;:&quot;value&quot;,
-&quot;Comment&quot;:&quot;value&quot;}, </span></font></font></font>
-</p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;userData&quot;:{
-</span></font></font></font>
-</p>
-<p style="margin-left: 0.98in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;UserId&quot;:&quot;value&quot;,&quot;Username&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,&quot;LastName&quot;:&quot;value&quot;,
-&quot;PhotoUri&quot;:&quot;value:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">},{&hellip;},
-&hellip;]</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/confirm/{transId}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Confirm transaction</span></font></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/transactions/confirm/{transId}</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/transactions/confirm/{transId}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">	Empty
-(or error message)</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/close/{transId}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Close transaction</span></font></font></font></p>
-<p style="text-indent: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/transactions/close/{transId}</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/transactions/close/{transId}</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">	Empty
-(or error message)</span></font></font></font></p>
-<p lang="en-US" style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+![User settings page](https://raw.githubusercontent.com/SergeyIS/Storage/master/SafeMooney/laptop-editpage.png)
+## Account API
 
-</p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">*api/{userId}/transactions/fetch</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Description:</span></font></font><font color="#262626"><font face="Consolas, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">
-Return all unclosed transactions for user</span></font></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Request:
-[GET] api/{userId}/transactions/fetch</span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US">Response:
-[GET] api/{userId}/transactions/fetch</span></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">[{</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;transactionData&quot;:{</span></font></font></font></p>
-<p style="margin-left: 0.98in; text-indent: 0in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;Id&quot;:&quot;value&quot;,&quot;User1Id&quot;:&quot;value&quot;,&quot;User2Id&quot;:&quot;value&quot;,&quot;Count&quot;:&quot;value&quot;,
-&quot;Date&quot;:&quot;value&quot;, &quot;Period&quot;:&quot;value&quot;,
-&quot;IsPermited&quot;:&quot;value&quot;, &quot;IsClosed&quot;:&quot;value&quot;,
-&quot;Comment&quot;:&quot;value&quot;}, </span></font></font></font>
-</p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;userData&quot;:{
-</span></font></font></font>
-</p>
-<p style="margin-left: 0.98in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">&quot;UserId&quot;:&quot;value&quot;,&quot;Username&quot;:&quot;value&quot;,&quot;FirstName&quot;:&quot;value&quot;,&quot;LastName&quot;:&quot;value&quot;,
-&quot;PhotoUri&quot;:&quot;value:&quot;value&quot;}</span></font></font></font></p>
-<p style="margin-left: 0.49in; margin-bottom: 0.14in; line-height: 115%">
-<font color="#000000"><font face="Consolas, serif"><font size="2" style="font-size: 9pt"><span lang="en-US">},{&hellip;},
-&hellip;]</span></font></font></font></p>
-<p align="right" style="margin-bottom: 0.14in; line-height: 115%"><font face="Consolas, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>Part
-IV. Payments</b></span></font></font></p>
-<p style="margin-bottom: 0.14in; line-height: 115%"><br/>
-<br/>
+> *api/account/login
 
-</p>
-</body>
-</html>
+Description: This method provides access to service for user
+
+Request: [POST] api/account/login
+
+Body:
+
+    {"Username":"value", "Password":"value"}
+
+Response: [POST] api/account/login
+
+    {"UserId":"value", "Username":"value", FirstName":"value", "LastName":"value", "Access_Token":"value"}
+
+----------
+
+> *api/{userId}/account/logout
+
+Description: logging out
+
+Request: [GET] api/{userId}/account/logout
+
+Body: Empty
+
+Response: [GET] api/{userId}/account/logout
+
+    Empty (only status code)
+
+
+----------
+
+
+> api/account/signup
+
+Description: This method register user in the system
+
+Request: [POST] api/account/signup
+
+Body:
+
+    {"Username":"value", "Password":"value","FirstName":"value", "LastName":"value"}
+
+Response: [POST] api/account/signup
+
+    Empty (only status code)
+
+
+----------
+
+
+> *api/{userId}/account/changeuserinfo
+
+Description: Change user first name, last name and username
+
+Request: [POST] api/{userId}/account/logout
+
+Body:
+
+    {"Username":"value", FirstName":"value", "LastName":"value"}
+
+Response: [POST] api/{userId}/account/logout
+
+    {"UserId":"value", "Username":"value", FirstName":"value", "LastName":"value"}
+
+
+----------
+
+
+> *api/{userId}/account/changepass
+
+Description: Change user password
+
+Request: [POST] api/{userId}/account/logout
+
+Body:
+
+    {"OldPassword":"value", NewPassword":"value"}
+
+Response: [POST] api/{userId}/account/changepass
+
+    Empty (or error message)
+
+
+----------
+
+
+> *api/getimg/{filename}
+
+Description: Return user image or default image
+
+Request: [GET] api/getimg/{filename} (filename: "{userid}.jpg")
+
+Body: 
+
+    Empty
+
+Response: [GET] api/getimg/{filename}
+
+    raw data (bytes of image)
+
+
+----------
+
+
+> api/{userId}/setimg?filename={userid}.jpg
+
+Description: Set image for user
+
+Request: [POST] api/{userId}/setimg
+
+Body:
+
+    raw data (bytes of image)
+
+Response: [POST] api/{userId}/setimg
+
+    Empty (or error message)
+
+## Social Services API
+
+> api/{userId}/services/vk/addservice?code={value}
+
+Description: Add vk.com service for user into services list. Code is parameter returned from vk.com on authorization process
+
+Request: [GET] api/{userId}/services/vk/addservice
+
+Response: [GET] api/{userId}/services/vk/addservice
+
+    Empty (or error message)
+
+----------
+
+> api/{userId}/services/vk/search?query={value}
+
+Description: Search people from user’s vk.com friends list
+
+Request: [GET] api/{userId}/services/vk/search
+
+Response: [GET] api/{userId}/services/vk/search
+
+    [{"UserId":"value", "Username":"value","FirstName":"value", "LastName":"value", "Availability":"value", "AuthorizationId":"value", "PhotoUri":"value"}, {…}, …]
+     
+----------
+
+
+> api/{userId}/services/vk/check
+
+Description: Check for availability of vk.com account
+
+Request: [GET] api/{userId}/services/vk/check
+
+Response: [GET] api/{userId}/services/vk/check
+
+    "true"/"false" or error message
+
+  
+
+
+----------
+
+
+  
+
+> api/{userId}/services/email/sendinvent?email={value}&signup_url={value}
+
+Description: Send email invitation to join SafeMoney. Email parameter is email:) signup_url is url to signup page or app store link
+
+Request: [GET] api/{userId}/services/email/sendinvent
+
+Response: [GET] api/{userId}/services/email/sendinvent
+
+    Empty (or error message)
+
+## Transactions API
+
+> api/{userId}/transactions/getuserlist
+
+Description: Return full friend list for user
+
+Request: [GET] api/{userId}/transactions/getuserlist
+
+Response: [GET] api/{userId}/transactions/getuserlist
+
+    [{"UserId":"value", "Username":"value","FirstName":"value", "LastName":"value"}, {…}, …]
+
+
+----------
+
+
+> api/{userId}/transactions/getuserlist?search={value}
+
+Description: Return result of searching.
+
+Request: [GET] api/{userId}/transactions/getuserlist
+
+Response: [GET] api/{userId}/transactions/getuserlist
+
+    [{"UserId":"value", "Username":"value","FirstName":"value", "LastName":"value"}, {…}, …]
+
+  
+  
+
+  
+
+
+----------
+
+
+  
+
+> api/{userId}/transactions/add
+
+Description: Add new not permitted transaction
+
+Request: [POST] api/{userId}/transactions/add
+
+Body:
+
+    {"userId":"value", "count":"value", "date":"value", "period":"value", "comment":"value"}
+
+Response: [PSOT] api/{userId}/transactions/add
+
+    Empty (or error message)
+
+  
+
+
+----------
+
+
+  
+
+> api/{userId}/transactions/checkqueue
+
+Description: Check transactions table and retern not permited for this user
+
+Request: [GET] api/{userId}/transactions/checkqueue
+
+Response: [GET] api/{userId}/transactions/checkqueue
+
+    [{
+    
+    "transactionData":{
+    
+    "Id":"value","User1Id":"value","User2Id":"value","Count":"value", "Date":"value", "Period":"value", "IsPermited":"value", "IsClosed":"value", "Comment":"value"},
+    
+    "userData":{
+    
+    "UserId":"value","Username":"value","FirstName":"value","LastName":"value", "PhotoUri":"value:"value"}
+    
+    },{…}, …]
+
+  
+  
+
+
+----------
+
+
+> api/{userId}/transactions/confirm/{transId}
+
+Description: Confirm transaction
+
+Request: [GET] api/{userId}/transactions/confirm/{transId}
+
+Response: [GET] api/{userId}/transactions/confirm/{transId}
+
+    Empty (or error message)
+
+
+----------
+
+
+> api/{userId}/transactions/close/{transId}
+
+Description: Close transaction
+
+Request: [GET] api/{userId}/transactions/close/{transId}
+
+Response: [GET] api/{userId}/transactions/close/{transId}
+
+    Empty (or error message)
+
+  
+
+
+----------
+
+
+  
+
+> api/{userId}/transactions/fetch
+
+Description: Return all unclosed transactions for user
+
+Request: [GET] api/{userId}/transactions/fetch
+
+Response: [GET] api/{userId}/transactions/fetch
+
+    [{
+    
+    "transactionData":{
+    
+    "Id":"value","User1Id":"value","User2Id":"value","Count":"value", "Date":"value", "Period":"value", "IsPermited":"value", "IsClosed":"value", "Comment":"value"},
+    
+    "userData":{
+    
+    "UserId":"value","Username":"value","FirstName":"value","LastName":"value", "PhotoUri":"value:"value"}
+    
+    },{…}, …]
+
+
+## Payments API
+Coming soon
