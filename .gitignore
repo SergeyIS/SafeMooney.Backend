@@ -1,0 +1,16 @@
+.vs/
+_ReSharper*
+bin/
+*.swp
+obj/
+*.user
+*.suo
+.gitk*
+*AssemblyTitle.cs
+.nuget/NuGet.exe
+packages/
+*.backup
+.vs/
+Web.config
+Web.Debug.config
+Web.Release.config
